@@ -9,9 +9,9 @@ function connexionBdd() {
 
     $PARAM_hote = 'localhost';   // adresse du serveur Apache
     $PARAM_port = 3306;          // port pour les clients mysql
-    $PARAM_bdd = 'ogoutdujour';        // nom de la base de données
+    $PARAM_bdd = 'info0708';        // nom de la base de données
     $PARAM_user = 'root';     // nom d'utilisateur pour se connecter
-    $PARAM_mdp = 'v9oueNWmtW';       // mot de passe de l'utilisateur
+    $PARAM_mdp = 'root';       // mot de passe de l'utilisateur
 
     // Chaine de connexion à la base de données
     $PARAM_dsn = "mysql:host=$PARAM_hote;port=$PARAM_port;dbname=$PARAM_bdd";
