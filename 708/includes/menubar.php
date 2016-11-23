@@ -59,6 +59,12 @@ if(!isset($_SESSION["admin"])){
                             </a>
                         </li>
 
+                        <li>
+                            <a href="services.php">
+                                Services
+                            </a>
+                        </li>
+
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">

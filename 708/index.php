@@ -88,6 +88,7 @@ $telephone = $infos[4]["valeur"];
 
                         <br>
                         <p class="content-text"><?php echo $accueil; ?></p>
+                        <p>toto est arrivé ici</p>
                     </div>
                 </div>
 
