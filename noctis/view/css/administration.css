@@ -1,0 +1,33 @@
+.panel {
+    height: 100%;
+}
+.panel-body {
+    height: 100%;
+}
+
+.frame-menu{
+  height: 600px;
+  width: 100%;
+  border:none 0;
+}
+
+
+.img-banner{
+    height: 95%;
+    width: 95%;
+}
+
+.img_gallery{
+  width: 350px;
+  height: 200px;
+}
+
+
+.textAreaMsgAccueil{
+  height: 150px;
+  width: 100%;
+}
+
+.inputCoord{
+    width: 400px;
+}
