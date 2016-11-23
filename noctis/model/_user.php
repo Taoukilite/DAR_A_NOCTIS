@@ -6,19 +6,23 @@
 	require_once '_manager.php';
 	class User
 	{
-		private $_id;
 		private $_name;
 		private $_firstname;
+		private $_adresse;
 		private $_login;
+		private $_mdp;
 
 		// Constructeur
 
-		function __construct($id, $name, $firstname, $login)
+		function __construct($name, $firstname, $adresse, $login, $mdp )
 		{
-			$this->_id = $id;
+			
 			$this->_name = $name;
 			$this->_firstname = $firstname;
+			$this->_adresse = $adresse;
 			$this->_login = $login;
+			$this->_mdp = $mdp;
+			
 		}
 
 
@@ -53,7 +57,7 @@
 			$str .= $this->getName();
 			$str .= '<br />';
 			$str .= 'prenom : ';
-			$str .= $this->getPrenom();
+			$str .= $this->getFirstname();
 			$str .= '<br />';
 			$str .= 'login : ';
 			$str .= $this->getLogin();
@@ -64,7 +68,7 @@
 		
 	}
 
-
+/*
 	function login($login, $pwd)
 	{
 		$result = null;
@@ -108,4 +112,4 @@
 	    }else{
 	    	return NULL;
 	    }
-	}
+	}*/
