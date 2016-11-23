@@ -17,6 +17,7 @@
 	function getInfos($info){
 		
 		if(!isset($_GET['idpro'])){
+			echo 'Error getInfos : ' . $e->getMessage() . '';
 			die();
 		}
 		
@@ -26,7 +27,7 @@
 
 			$requete = $pdo->prepare("SELECT :info FROM Pro WHERE IDPro = :id");
 			$result =  $requete->execute(array(
-				':id'=> $_GET['idpro'],
+				':id'=> $_GET['idpro']),
 				':info'=> $info
 			));
 			$result = $result->fetch(PDO::FETCH_ASSOC)[$info];
@@ -37,7 +38,6 @@
 			die();
 		}
 	}
-	
 	function getProfessionnals()
 	{
 		$pdo = connexionBdd();

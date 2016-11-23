@@ -23,9 +23,6 @@
 		{
 			return $this->_name;
 		}
-		
-
-		
 
 	}
 
