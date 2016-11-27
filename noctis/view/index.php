@@ -43,7 +43,7 @@ require_once "../model/accesBdd.php";
                             <a class="page-scroll" href="#about">Bienvenue</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#menu">Menu</a>
+                            <a class="page-scroll" href="#services">Services</a>
                         </li>
                         <li>
                             <a class="page-scroll" href="login.php">Connexion</a>
@@ -104,16 +104,16 @@ require_once "../model/accesBdd.php";
         </section>
 
         <!-- Services Section -->
-        <section id="menu" class="menu-section">
+        <section id="services" class="services-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Menu</h1>
+                        <h1>Services</h1>
                         
                     </div>
                 </div>
             </div>
-            <iframe src="#" class="frame-menu"></iframe>
+            <iframe src="#" class="frame-services"></iframe>
         </section>
 
         <!-- Contact Section -->
