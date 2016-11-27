@@ -36,12 +36,12 @@ include("includes/menubar.php");
 		        <div class="col-md-4">
 		            <h3>Catégories de services</h3>
 		            <div class="list-group" style="max-height: 250px; overflow: auto;">
-		            	<a href="#" class="list-group-item">Tous</a>
+		            	<a class="list-group-item service">Tous</a>
 		                <?php 
 
 		                	foreach($services as $s)
 		                	{
-		                		echo "<a href='#' id='". $s->getName() ."' class='list-group-item'>". $s->getName() . "</a>";
+		                		echo "<a id='". $s->getName() ."' class='list-group-item service'>". $s->getName() . "</a>";
 		                	}
 		                ?>
 		            </div>
@@ -55,21 +55,25 @@ include("includes/menubar.php");
 			                    <tr>
 			                        <th>Nom</th>
 			                        <th style="width:33%">Services</th>
-			                        <!-- <th style="width:100px">Supprimer</th> -->
 			                    </tr>
 		                    </thead>
 		                    <tbody>
-			                    <!-- <tr>
-			                        <td><a href="service.php?service=toto">Baby-sitting</a></td>
-			                        <td>Service à domicile</td>
-			                        <td>john@example.com</td>
-			                    </tr> -->
 			                    
 			                    <?php
 			                    	foreach($professionnals as $pro)
 			                    	{
-			                    		echo "<tr>";
-			                    		echo "<td>". $pro->getName() . " " . $pro->getFirstName() . "</td>";
+			                    		echo "<tr class='professionnal ";
+
+			                    		if($pro->getSuppliedServices() != NULL)
+			                    		{
+				                    			foreach($pro->getSuppliedServices() as $service){
+				                    			echo $service->getName() . " ";
+				                    		}
+			                    		}
+
+			                    		echo "'>";
+
+			                    		echo "<td> <a href='professionnalDescription.php?idpro=". $pro->getId() ."' target='_blank'>". $pro->getName() . " " . $pro->getFirstName() . "</a></td>";
 			                    		echo "<td>";
 			                    		if($pro->getSuppliedServices() != NULL)
 			                    		{
@@ -84,7 +88,6 @@ include("includes/menubar.php");
 
 			                    		echo "</tr>";
 			                    	}
-
 			                    ?>
 		                    </tbody>
 		                </table>
@@ -92,5 +95,8 @@ include("includes/menubar.php");
 		        </div>
 		    </div>
 		</div>
+
+
 	</body>
+	<script src="js/proArray.js"></script>
 </html>
