@@ -1,0 +1,6 @@
+Encodage : ut8_general_ci
+
+compte : root
+mdp : aucun
+
+fichier de connexion : model/accesBdd.php

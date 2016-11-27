@@ -1,0 +1,167 @@
+-migration des données (solution hybride)
+
+services : physique : 
+			numerique :
+
+-paiement d'acompte
+	- max 1 mois apres : paiement du reste
+
+-geoloc des pros (boutiques)
+	paiement indépendant de la boutique
+
+	commission -> correspond a quoi
+	commission automatique pour le pro lors de l'utilisation du systeme de paiement.
+
+systeme de notation de la qualité de la transaction
+	notation du pro, pas de notation si pas d'interaction avec un pro
+
+
+fonctionalités :
+- accès client
+	- authentification
+	- visualisation des services ( et accès aux services proches)
+	- paiement d'acompte (50% min)
+	- paiement final (1 mois apres max)
+	- notation du professionel
+	- prendre rendez-vous
+
+- accès pro
+	- authentification
+	- ajout d'un service (localisation)
+	- suivi des paiements réalisés
+	- note générale recue
+	- agenda
+
+service a la personne
+
+reponse a un besoin ponctuel
+
+client renseigne le service dont il a besoin
+communication avec pro pour établir un devis.
+devis apres rendez vous. 
+Integration du planning du pro, confirmation de possibilité par le pro
+
+un ou deux jours ouvrables pour répondre
+
+geolocalisation : base disponible des adresses (pas forcement de geoloc)
+50km de rayon en province, 5 - 10 en ville.
+
+déléguation de la société principale aux autres entreprises. pas de lien entre Tyrell et les pros.
+
+
+services proposés : 
+	liste déroulante avec types de services
+		catégories
+		autre : garde enfants (périscolaire), aide ménagère
+
+---  pas de gestion d'ajout de pros / services ---
+
+démarchage de nouveaux pro tout les mois (reseau sociaux...)
+reprise de contact avec les pros (masquer activer un pro, disponiblités)
+
+un pro a un type et des sous types de services
+
+restictions tech :
+
+chaque site a sa bdd
+
+base centrale
+possibilité cloud, manque d'investissement
+
+etendre stockage possible
+formation new tech prossible
+
+
+tech actuelle :
+	protocole unifié pour la co a la bdd.
+	chaque boutique peut avoir sa structure perso
+	poste sql en general
+	serveur windows basique (XP - seven)
+
+solution hybride ou solution de remplacement.
+
+solution de transition (hybride avec possibilité de remplacement, peut dépendre de la localisation)
+pas de service de telephonie
+
+
+
+
+CLIENT :
+	id
+	nom
+	prenom
+	adresse
+	login
+	mot de passe
+	notes
+	paiements en cours
+
+
+PRO :
+	id
+	nom
+	prenom
+	adresse
+	services
+	Note
+	Agenda
+
+
+SERVICES :
+	id
+	nom
+	type (physique / numerique)
+	categorie
+
+
+RENDEZ VOUS :
+	id
+	client
+	pro
+	date
+	heure
+	lieu
+
+php vanilla 
+css : bootstrap
+sql : mysql pdo
+javascript : JQuery
+
+
+
+TODO :
+
+
+User story
+
+Repartition des taches
+
+MVC
+
+
+User story :
+	En tant que client je souhaiterais pouvoir m'inscrire
+	//En tant que professionel je souhaiterais recevoir mes informations de connection de la part de l'entreprise
+	En tant qu'utilisateur je souhaiterais pouvoir me connecter à l'application
+	En tant que client je souhaiterais consulter la liste des services disponibles près de ma position
+	En tant que client je souhaiterais consulter l'offre d'un professionel
+	En tant que professionel je souhaiterais consulter la liste des clients avec lesquels j'ai été mis en relation
+	En tant que client je souhaiterais noter la prestation d'un professionel
+	En tant que professionel je souhaiterais consulter ma note globale
+	En tant que client je souhaiterais payer un acompte à un prestataire
+	En tant que client je souhaiterais payer le reste du service réalisé
+	En tant que professionel je souhaiterais que le client me règle le reste de son du avant la date limite (1 mois)
+	En tant que professionel je souhaiterais pouvoir consulter et modifier mon agenda
+	En tant que client je souhaiterais consulter les disponibiltés d'un professionel
+
+	En tant qu'administrateur je souhaiterais gérer (CRUD) la liste des professionels dans une zone donnée
+
+Repartition des taches :
+
+	Clients
+
+
+	Professionels
+
+
+	Administrateurs

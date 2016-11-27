@@ -14,12 +14,11 @@ if(!isset($_SESSION["UID"])){
     	<meta charset="utf-8">
     	<meta http-equiv="x-ua-compatible" content="ie=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<title>Noctis - Administration</title>
+    	<title>Tyrell - Administration</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/gsb_styles.css" rel="stylesheet">
         <link href="css/administration.css" rel="stylesheet">
-        <script src="js/jquery.js">
-        </script>
+        <script src="js/jquery.js"></script>
 
     </head>
         <body>
