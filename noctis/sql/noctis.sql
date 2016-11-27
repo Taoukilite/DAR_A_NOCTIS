@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 23 Novembre 2016 à 17:55
+-- Généré le :  Dim 27 Novembre 2016 à 14:50
 -- Version du serveur :  5.7.9
 -- Version de PHP :  7.0.0
 
@@ -75,20 +75,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `town` varchar(250) DEFAULT NULL,
+  `postal` varchar(10) DEFAULT NULL,
+  `mail` varchar(250) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `firstname`, `type`, `login`, `password`) VALUES
-(1, 'dupont', 'jean', 1, 'gest', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
-(2, 'smith', 'john', 2, 'pro', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
-(3, 'Fritz', 'Johann', 3, 'client', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 ');
+INSERT INTO `users` (`id`, `name`, `firstname`, `address`, `town`, `postal`, `mail`, `type`, `login`, `password`) VALUES
+(1, 'dupont', 'jean', NULL, NULL, NULL, NULL, 1, 'gest', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(2, 'smith', 'john', NULL, NULL, NULL, NULL, 2, 'pro', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(3, 'Fritz', 'Johann', NULL, NULL, NULL, NULL, 3, 'client', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(4, 'Landru', 'Henri Désire', 'Rue de la machine', 'Paris', '75001', 'cuisinier@gmail.com', 3, 'Landru', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
+(5, 'nom', 'prenom', 'adresse', 'ville', 'cp', 'mail', 3, 'login', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 
 -- --------------------------------------------------------
 

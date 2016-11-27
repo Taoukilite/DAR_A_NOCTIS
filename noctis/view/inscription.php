@@ -2,13 +2,19 @@
 require_once '../model/accesBdd.php';
 require_once '../model/_user.php';
 require_once '../controller/userController.php';
-$wrongPwd = "";
-/*
-if(isset($_POST["login"]) && isset($_POST["pwd"])){
-    extract($_POST);
-    //authenticate($login, $pwd);
+
+
+if(isset($_POST["create"])){
+	extract($_POST);
+
+	if(createUser($name, $firstname, $login, $pwd, $town, $postal, $address, $mail, 3)){
+		echo "<script type='text/javascript'>alert('Votre compte à bien été créé, vous pouvez désormais vous connecter');</script>";
+	}
+
+
+
+
 }
-*/
 
 ?>
 
@@ -22,43 +28,51 @@ if(isset($_POST["login"]) && isset($_POST["pwd"])){
 <title>Inscription</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/login.css" />
+<script src="js/jquery.js"></script>
 
 </head>
     <body>
-        <div id="form1" class="container">
-          <div class="row" id="pwd-container">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-              <section class="login-form">
-               <?php  
-                    if (isset($_POST['Creer'])) 
-                    {
-                      $Client = new Client($_POST["nom"],$_POST["prenom"],$_POST["adresse"],$_POST["login"],$_POST["pwd"],3);
-                      echo "<center><h1><strong>votre inscription est validée</strong></h1></center>";
-                    }  
-                  ?>
-                <form method="post" action="inscription.php" role="login">
-                  <center><h1><strong>Inscription</strong></h1></center>
-                  <input type="text" name="nom" placeholder="Nom" required class="form-control input-lg" value="" focused />
-                  <input type="text" name="prenom" placeholder="Prenom" required class="form-control input-lg" value="" focused />
-                  <input type="text" name="adresse" placeholder="Adresse" required class="form-control input-lg" value="" focused />
-                  <input type="text" name="login" placeholder="Login" required class="form-control input-lg" value="" focused />
-                  <input type="password" name ="pwd" class="form-control input-lg" id="password" placeholder="Mot de passe" required="" />
-                  <input type="password" name ="pwd2" class="form-control input-lg" id="password2" placeholder="Confirmation mot de passe" required="" />
-                  <div id="wrongPwd"><?php echo $wrongPwd; ?></div>
-                  <button type="submit" name="Creer" class="btn btn-lg btn-primary btn-block">Creer </button>
-                  <div>
-                    <a href="index.php">Retour au site.</a>
-                  </div>
-                </form>
-              </section>
-              </div>
-              <div class="col-md-4"></div>
-          </div>
-        </div>
-    </body>
-</html>
-<?php
-  
-?>
+		<div id="form1" class="container">
+			<div class="row" id="pwd-container">
+				<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<section class="login-form">
+							<?php  
+							/*if (isset($_POST['Creer'])){
+								$Client = new Client($_POST["nom"],$_POST["prenom"],$_POST["adresse"],$_POST["login"],$_POST["pwd"],3);
+								echo "<center><h1><strong>votre inscription est validée</strong></h1></center>";
+							}*/  
+							?>
+							<form method="post" action="inscription.php" role="login">
+								<center><h1><strong>Inscription</strong></h1></center>
 
+								<input type="text" name="name" placeholder="Nom" required class="form-control input-lg" focused/>
+								<input type="text" name="firstname" placeholder="Prenom" required class="form-control input-lg" />
+
+								<input type="text" name="address" placeholder="Adresse" required class="form-control input-lg" />
+								<input type="text" name="town" placeholder="Ville" required class="form-control input-lg" />
+								<input type="text" name="postal" placeholder="Code Postal" required class="form-control input-lg" >
+
+								<input type="text" name="mail" placeholder="Adresse e-mail" required class="form-control input-lg"/>
+
+								<input type="text" name="login" placeholder="Login" required class="form-control input-lg"  />
+
+
+								<input type="password" name ="pwd" class="form-control input-lg comparePwd" id="password" placeholder="Mot de passe" required="" />
+								<input type="password" name ="pwd2" class="form-control input-lg comparePwd" id="condirmPassword" placeholder="Confirmation mot de passe" required />
+								<div id="noMatch">Les mots de passe ne coïncident pas.</div>
+
+
+								<button type="submit" id="submitUser" name="create" class="btn btn-lg btn-primary btn-block">Creer </button>
+								<div>
+									<a href="index.php">Retour au site.</a>
+								</div>
+							</form>
+						</section>
+					</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+    </body>
+    <script src="js/modifmdp.js"></script>
+</html>

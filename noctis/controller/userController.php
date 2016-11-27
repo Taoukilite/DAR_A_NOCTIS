@@ -1,15 +1,5 @@
 <?php
-	require_once "../model/accesBdd.php";
-	
-	$values = array(
-			"login",
-			"pwd",
-			"mail",
-			"town",
-			"postal",
-			"address"
-		);
-		
+
 	function authenticate($login, $pwd){
 
 		$pwd = hash("sha256", $pwd);
@@ -38,7 +28,8 @@
 
 
 
-	function login($login, $pwd){
+	function login($login, $pwd)
+	{
 		$result = null;
 	    $pdo = connexionBdd();
 	    
@@ -67,6 +58,7 @@
 	    if($result){
 	    	extract($result);
 	    	$user = null;
+
 	    	if($type == 1)
 	    		$user = new Manager($id, $name, $firstname, $login);
 	    	elseif ($type == 2) {
@@ -81,29 +73,34 @@
 	    }
 	}
 
-	function createUser($login, $pwd, $town, $postal, $address, $mail){
+	function createUser($name, $firstname, $login, $pwd, $town, $postal, $address, $mail, $type){
 
 		$pwd = hash("sha256", $pwd);
 		$pdo = connexionBdd();
 
-		$sql = "INSERT users (login, pwd, town, postal, address, mail) 
-		VALUE (:login, :pwd, :town, :postal, :address, :mail)";
+
+		$sql = "INSERT INTO users (name, firstname, login, password, town, postal, address, mail, type) 
+		VALUES (:name, :firstname, :login, :pwd, :town, :postal, :address, :mail, :type)";
 
 		try{
 
 			$requete = $pdo->prepare($sql);
 			$requete->execute(array(
+				':name'=> $name,
+				':firstname'=> $firstname,
 				':login'=> $login,
 				':pwd'=> $pwd,
 				':town'=> $town,
+				':postal' => $postal,
 				':postal'=> $postal,
 				':address'=> $address,
-				':mail'=> $mail
+				':mail'=> $mail,
+				':type'=> $type
 			));
 
 		}catch(PDOException $e){
 			$requete = null;
-			echo 'Erreur setMdp : ' . $e->getMessage() . '';
+			echo 'Erreur createUser : ' . $e->getMessage() . '';
 			die();
 		}
 		return true;
@@ -141,4 +138,5 @@
 		}
 		return true;
 	}
+
 ?>

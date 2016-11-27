@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	$("#noMatch").hide();
 
-	$('.compareMdp').blur(function(){
-		var confirmMdp = $("#confirmMdp").val();
-		var newMdp = $("#newMdp").val();
+	$('.comparePwd').blur(function(){
+		var password = $("#password").val();
+		var condirmPassword = $("#condirmPassword").val();
 
-		compareMdp(newMdp, confirmMdp);
+		comparePwd(condirmPassword, password);
 
 	});
 
@@ -15,15 +15,15 @@ $(document).ready(function(){
 
 
 })
-function compareMdp(newMdp, confirmMdp){
+function comparePwd(condirmPassword, password){
 
-	if(newMdp != confirmMdp)
+	if(condirmPassword != password)
 	{
 		$("#noMatch").show();
-        $("#submitNewMdp").prop("disabled", true);
+        $("#submitUser").prop("disabled", true);
 	}
 	else{
 		$("#noMatch").hide();
-        $("#submitNewMdp").prop("disabled", false);
+        $("#submitUser").prop("disabled", false);
 	}
 }
