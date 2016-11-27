@@ -12,7 +12,7 @@ require_once "../model/accesBdd.php";
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Noctis</title>
+		<title>Tyrell</title>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
@@ -29,7 +29,7 @@ require_once "../model/accesBdd.php";
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top">Noctis</a>
+                    <a class="navbar-brand page-scroll" href="#page-top">Tyrell</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,6 +46,9 @@ require_once "../model/accesBdd.php";
                             <a class="page-scroll" href="#services">Services</a>
                         </li>
                         <li>
+                            <a class="page-scroll" href="#contact">Contact</a>
+                        </li>
+                        <li>
                             <a class="page-scroll" href="login.php">Connexion</a>
                         </li>
                     </ul>
@@ -60,7 +63,7 @@ require_once "../model/accesBdd.php";
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Noctis - Services</h1>
+                        <h1>Tyrell - Services</h1>
                     </div>
                 </div>
             </div>
@@ -113,7 +116,7 @@ require_once "../model/accesBdd.php";
                     </div>
                 </div>
             </div>
-            <iframe src="#" class="frame-services"></iframe>
+            <!-- <iframe src="#" class="frame-services"></iframe> -->
         </section>
 
         <!-- Contact Section -->
@@ -135,8 +138,8 @@ require_once "../model/accesBdd.php";
                             <br>
                             <h3>Adresse :</h3>
                             <p> 10 downing Street </p>
-                            <div id="googleMap"></div>
-
+                            <!-- <div id="googleMap"></div>
+ -->
 
                         </div>
                     </div>
