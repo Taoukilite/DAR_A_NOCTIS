@@ -1,6 +1,4 @@
-<<<<<<< HEAD
+
 .idea/workspace.xml
-=======
-# Created by .ignore support plugin (hsz.mobi)
 .idea/
->>>>>>> refs/remotes/origin/master
+workerNQueen.py
