@@ -138,8 +138,8 @@ require_once "../model/accesBdd.php";
                             <br>
                             <h3>Adresse :</h3>
                             <p> 10 downing Street </p>
-                            <!-- <div id="googleMap"></div>
- -->
+                            <div id="googleMap"></div>
+
 
                         </div>
                     </div>
@@ -150,7 +150,6 @@ require_once "../model/accesBdd.php";
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
-
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8"></script>
+        <script src="js/bootstrap.js"></script>
     </body>
 </html>

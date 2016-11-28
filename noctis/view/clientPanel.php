@@ -30,29 +30,42 @@ include("includes/menubar.php");
 		    </div>
 
 		    <div class="row">
-		        <div class="col-md-4">
+		        <!-- <div class="col-md-4">
 		            <h3>Catégories de services</h3>
 		            <div class="list-group" style="max-height: 250px; overflow: auto;">
 		            	<a class="list-group-item service">Tous</a>
 		                <?php 
 
-		                	foreach($services as $s)
+		                	/*foreach($services as $s)
 		                	{
 		                		echo "<a id='". $s->getName() ."' class='list-group-item service'>". $s->getName() . "</a>";
-		                	}
+		                	}*/
 		                ?>
 		            </div>
-		        </div>
+		        </div> -->
 
-		        <div class="col-md-8">
-		            <h3>Services disponibles</h3>
+		        <div class="col-md-12">
+		            <h3>
+		            	Services disponibles dans un rayon de 
+
+						<select>
+							<option class="radius" value="1">1</option>
+							<option class="radius" value="5" selected>5</option>
+							<option class="radius" value="10">10</option>
+
+						</select>
+						Km
+
+
+		            </h3>
 		            <div style="max-height: 400px;">
 		                <table id="proTable">
 		                    <thead>
 			                    <tr>
 			                        <th>Nom</th>
 			                        <th>Adresse</th>
-			                        <th style="width:33%">Services</th>
+			                        <th>Services</th>
+			                        <th style="width: 10%;">Note</th>
 			                    </tr>
 		                    </thead>
 		                    <tbody>
@@ -77,7 +90,7 @@ include("includes/menubar.php");
 			                    		echo "<td>" . $pro->getAddress() . ", " . $pro->getTown() . " [".$pro->getPostalCode() . "]</td>";
 
 
-			                    		
+
 			                    		echo "<td>";
 
 
@@ -91,6 +104,8 @@ include("includes/menubar.php");
 			                    		}
 			                    		
 			                    		echo "</td>";
+
+			                    		echo "<td>replace me</td>";
 
 			                    		echo "</tr>";
 			                    	}
@@ -136,7 +151,7 @@ include("includes/menubar.php");
 
 
 	</script>
-	<script src="js/proArray.js"></script>
+	<!-- <script src="js/proArray.js"></script> -->
 	<script src="js/location.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8&signed_in=true&callback=initMap" async defer></script>
 
