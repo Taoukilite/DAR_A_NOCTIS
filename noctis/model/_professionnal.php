@@ -11,8 +11,8 @@
 
 		// Constructeur
 
-		function __construct($id, $name, $firstname, $login, $suppliedServices){
-			parent::__construct($id, $name, $firstname, $login);
+		function __construct($id, $name, $firstname, $login, $suppliedServices, $address, $town, $postalCode){
+			parent::__construct($id, $name, $firstname, $login, $address, $town, $postalCode);
 			$this->_id = $id;
 			$this->_login = $login;
 			$this->_suppliedServices = $suppliedServices;

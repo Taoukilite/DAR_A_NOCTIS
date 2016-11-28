@@ -25,13 +25,15 @@ $(function() {
 });
 
 $(document).ready(function() {
+
+
     var pos = new google.maps.LatLng(50.1777051, 3.2168609);
     var mapProp = {
       center:pos,
       zoom:15,
       mapTypeId:google.maps.MapTypeId.ROADMAP
     };
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var map=new google.maps.Map($("#googleMap"),mapProp);
 
     var pin=new google.maps.Marker({
     position:pos,

@@ -18,6 +18,7 @@ if(!isset($_SESSION["UID"])){
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/gsb_styles.css" rel="stylesheet">
         <link href="css/administration.css" rel="stylesheet">
+        <link href="css/datatables.css" rel="stylesheet">
         <script src="js/jquery.js"></script>
 
     </head>
@@ -29,36 +30,30 @@ if(!isset($_SESSION["UID"])){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="administration.php" class="navbar-brand">
+                    <!-- <a href="administration.php" class="navbar-brand">
                         Administration
-                    </a>
+                    </a> -->
                 </div> <!-- navbar-header -->
 
                 <nav class="collapse navbar-collapse navbar-responsive-collapse" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="carte.php">
-                                Carte
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="gallerie.php">
-                                Gallerie
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="informations.php">
-                                Informations
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="modifmdp.php">
-                                Changer le mot de passe
-                            </a>
-                        </li>
+                        <?php
+                            if($_SESSION["type"] == "Client"){
+                                echo "<li>
+                                        <a href='clientPanel.php' class='navbar-brand'>Accueil</a>
+                                    </li>";
+                            }
+                            if($_SESSION["type"] == "Professionnal"){
+                                echo "<li>
+                                        <a href='professionnalPanel.php' class='navbar-brand'>Accueil</a>
+                                    </li>";
+                            }
+                            if($_SESSION["type"] == "Manager"){
+                                echo "<li>
+                                        <a href='managerPanel.php' class='navbar-brand'>Accueil</a>
+                                    </li>";
+                            }
+                        ?>
 
                     </ul>
 
