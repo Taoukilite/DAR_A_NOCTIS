@@ -31,3 +31,7 @@
 .inputCoord{
     width: 400px;
 }
+
+#map{
+    height: 100%;
+}

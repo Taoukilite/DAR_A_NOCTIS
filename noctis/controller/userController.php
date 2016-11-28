@@ -33,7 +33,7 @@
 		$result = null;
 	    $pdo = connexionBdd();
 	    
-	    $sql = "SELECT id, name, firstname, login, type
+	    $sql = "SELECT id, name, firstname, login, address, town, postal, type
 	    FROM users
 	    WHERE login = :login 
 	    AND password = :pwd";
@@ -60,12 +60,12 @@
 	    	$user = null;
 
 	    	if($type == 1)
-	    		$user = new Manager($id, $name, $firstname, $login);
+	    		$user = new Manager($id, $name, $firstname, $login, null, null, null);
 	    	elseif ($type == 2) {
-	    		$user = new Professionnal($id, $name, $firstname, $login, NULL);
+	    		$user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal);
 	    	}
 	    	elseif ($type == 3) {
-	    		$user = new Client($id, $name, $firstname, $login);
+	    		$user = new Client($id, $name, $firstname, $login, $address, $town, $postal);
 	    	}
 	    	return $user;
 	    }else{
