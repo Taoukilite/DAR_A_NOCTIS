@@ -17,10 +17,10 @@ require_once "../model/accesBdd.php";
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
-    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <body id="page-top" data-spy="scroll" data-target=".navbar">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -59,51 +59,32 @@ require_once "../model/accesBdd.php";
         </nav>
 
         <!-- Intro Section -->
+
         <section id="intro" class="intro-section">
+            <div class="overlay-color">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Tyrell - Services</h1>
+                    <div class="col-sm-12">
+                        <form class="form-inline home-form">
+                            <div class="form-group">
+                                <input class="form-control input-lg home-input-service" id="inputlg" type="text" placeholder="Service recherché">
+                            </div>
+                            <button type="submit" class="input-lg home-input-submit btn btn-default">Rechercher</button>
+                        </form>
+                    </div>
+
+                    <div class="col-sm-12" id="form-address">
+                        <form class="form-inline home-form">
+                            <div class="form-group">
+                                <input class="form-control input-lg home-input-address" id="inputlg" type="text" placeholder="Entrez votre adresse">
+                            </div>
+                            <button type="submit" class="input-lg home-input-submit btn btn-default">Rechercher</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Bienvenue !</h1>
-
-                        <br>
-                        <p class="content-text">
-                            
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
                 </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery1.jpg">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery2.jpg">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery3.jpg">
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Services Section -->
@@ -111,7 +92,7 @@ require_once "../model/accesBdd.php";
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Services</h1>
+                        <h1>Disponibilité Services</h1>
                         
                     </div>
                 </div>
@@ -151,5 +132,8 @@ require_once "../model/accesBdd.php";
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/bootstrap.js"></script>
+
+        <script type="text/javascript">
+        </script>
     </body>
 </html>
