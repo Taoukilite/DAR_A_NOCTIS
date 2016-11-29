@@ -10,7 +10,7 @@
 		// Constructeur
 
 		function __construct($id, $name, $firstname, $login){
-			parent::__construct($id, $name, $firstname, $login);
+			parent::__construct($id, $name, $firstname, $login, null, null, null);
 			$this->_id = $id;
 			$this->_login = $login;
 		}

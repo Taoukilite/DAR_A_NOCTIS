@@ -3,41 +3,9 @@
 	require_once '../model/accesBdd.php';
 	require_once '../model/_professionnal.php';
 	require_once '../controller/serviceController.php';
-	
-	$values = array(
-			"name",
-			"fname",
-			"mail",
-			"town",
-			"postal",
-			"address"
-		);
-		
 
-	function getInfos($info){
-		
-		if(!isset($_GET['idpro'])){
-			die();
-		}
-		
-		$pdo = connectBddSuper();
 
-		try{
 
-			$requete = $pdo->prepare("SELECT :info FROM Pro WHERE IDPro = :id");
-			$result =  $requete->execute(array(
-				':id'=> $_GET['idpro'],
-				':info'=> $info
-			));
-			$result = $result->fetch(PDO::FETCH_ASSOC)[$info];
-
-		}catch(PDOException $e){
-			$requete = null;
-			echo 'Erreur setMdp : ' . $e->getMessage() . '';
-			die();
-		}
-	}
-	
 	function getProfessionnals()
 	{
 		$pdo = connexionBdd();
@@ -60,7 +28,7 @@
 
 	        foreach($results as $res)
 	        {
-	        	$pro = new Professionnal($res["id"], $res["name"], $res["firstname"], null, null);
+	        	$pro = new Professionnal($res["id"], $res["name"], $res["firstname"], null, null, $res["address"], $res["town"], $res["postal"]);
 	        	array_push($professionnals, $pro);
 	        }
 
