@@ -5,6 +5,7 @@ if(!isset($_SESSION["type"]) || $_SESSION["type"] != "Professionnal")
 {
 	header("Location: index.php");
 }
+
 include("includes/menubar.php");
 ?>
 

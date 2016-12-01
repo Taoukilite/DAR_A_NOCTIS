@@ -2,12 +2,12 @@
 
 session_start();
 
-
 require_once "../model/accesBdd.php";
 require_once '../model/_service.php';
 require_once '../model/_professionnal.php';
 require_once '../controller/serviceController.php';
 require_once '../controller/professionnalController.php';
+require_once '../controller/userController.php';
 $services = getServices();
 
 $professionnals = getProfessionnals();
@@ -56,7 +56,7 @@ foreach($professionnals as $pro){
                             if(isset($_SESSION["type"]) && !is_null($_SESSION["type"])) {
 echo <<<HTML
                 <li>
-                    <a class ="page-scroll" href="clientPanel.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
+                    <a class ="page-scroll" href="showProfile.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
             </li> 
 
                         <li>
