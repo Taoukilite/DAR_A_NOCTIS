@@ -1,6 +1,17 @@
 <?php
 
 require_once "../model/accesBdd.php";
+require_once '../model/_service.php';
+require_once '../model/_professionnal.php';
+require_once '../controller/serviceController.php';
+require_once '../controller/professionnalController.php';
+$services = getServices();
+
+$professionnals = getProfessionnals();
+
+foreach($professionnals as $pro){
+    setSuppliedServices($pro);
+}
 
 ?>
 
@@ -16,6 +27,8 @@ require_once "../model/accesBdd.php";
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/style.css">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css' />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
 	</head>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar">
@@ -35,7 +48,7 @@ require_once "../model/accesBdd.php";
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">git
+                    <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a class="page-scroll" href="login.php">Connexion</a>
                         </li>
@@ -45,28 +58,37 @@ require_once "../model/accesBdd.php";
             </div>
             <!-- /.container -->
         </nav>
-
         <!-- Intro Section -->
 
         <section id="intro" class="intro-section">
             <div class="overlay-color">
-            <div class="container">
+                <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
+                        <!--<?php
+                        foreach($professionnals as $pro) {
+
+                        if ($pro->getSuppliedServices() != NULL) {
+                        foreach ($pro->getSuppliedServices() as $service) {
+                        echo "".$service->getName() . "";
+                        }
+                        }
+                        }
+    ?> -->
                         <form class="form-inline home-form">
                             <div class="form-group">
-                                <input class="form-control input-lg home-input-service" id="inputlg" type="text" placeholder="Service recherché">
+                                <input class="form-control input-lg home-input-service" id="input-service" type="text" placeholder="Service recherché">
                             </div>
-                            <button type="submit" class="input-lg home-input-submit btn btn-default">Rechercher</button>
+                            <button type="button" class="input-lg home-input-submit btn btn-default" id="service-search">Trouver votre service</button>
                         </form>
                     </div>
 
                     <div class="col-sm-12" id="form-address">
                         <form class="form-inline home-form">
                             <div class="form-group">
-                                <input class="form-control input-lg home-input-address" id="inputlg" type="text" placeholder="Entrez votre adresse">
+                                <input class="form-control input-lg home-input-address" type="text" placeholder="Entrez votre adresse">
                             </div>
-                            <button type="submit" class="input-lg home-input-submit btn btn-default">Rechercher</button>
+                            <button type="button" class="input-lg home-input-submit btn btn-default" id="valid-address">Valider votre adresse</button>
                         </form>
 
                     </div>
@@ -121,15 +143,53 @@ require_once "../model/accesBdd.php";
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src='js/jquery.js'></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src='js/moment-with-locales.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js'></script>
-
         <script type="text/javascript">
             $(document).ready(function() {
 
-                // page is now ready, initialize the calendar...
+                var availableTags = [
+                    "ActionScript",
+                    "AppleScript",
+                    "Asp",
+                    "BASIC",
+                    "C",
+                    "C++",
+                    "Clojure",
+                    "COBOL",
+                    "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java",
+                    "JavaScript",
+                    "Lisp",
+                    "Perl",
+                    "PHP",
+                    "Python",
+                    "Ruby",
+                    "Scala",
+                    "Scheme"
+                ];
+                $( "#input-service" ).autocomplete({
+                    source: availableTags,
+                });
 
+                $('#service-search').click(function () {
+                    $('#form-address').css("visibility", "visible");
+                });
+
+                $('#valid-address').click(function () {
+                    $('#calendar').css("visibility", "visible");
+                });
+
+                // FULL CALENDAR
                 $('#calendar').fullCalendar({
+                    defaultView: 'agendaWeek',
+                    height: 500,
+                    header: { left: 'prev,next today month,agendaWeek', right: '' }
                     // put your options and callbacks here
                 })
 

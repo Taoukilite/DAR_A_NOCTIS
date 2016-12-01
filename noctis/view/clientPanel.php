@@ -17,6 +17,7 @@ $professionnals = getProfessionnals();
 foreach($professionnals as $pro){
 	setSuppliedServices($pro);
 }
+
 include("includes/menubar.php");
 
 ?>
