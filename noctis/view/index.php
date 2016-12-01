@@ -27,8 +27,8 @@ foreach($professionnals as $pro){
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/style.css">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css' />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        <link rel="stylesheet" href="css/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+
 	</head>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar">
@@ -65,19 +65,9 @@ foreach($professionnals as $pro){
                 <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <!--<?php
-                        foreach($professionnals as $pro) {
-
-                        if ($pro->getSuppliedServices() != NULL) {
-                        foreach ($pro->getSuppliedServices() as $service) {
-                        echo "".$service->getName() . "";
-                        }
-                        }
-                        }
-    ?> -->
                         <form class="form-inline home-form">
                             <div class="form-group">
-                                <input class="form-control input-lg home-input-service" id="input-service" type="text" placeholder="Service recherché">
+                                <input class="form-control input-lg home-input-service" name="service-search" id="input-service" type="text" placeholder="Service recherché">
                             </div>
                             <button type="button" class="input-lg home-input-submit btn btn-default" id="service-search">Trouver votre service</button>
                         </form>
@@ -110,34 +100,6 @@ foreach($professionnals as $pro){
             <!-- <iframe src="#" class="frame-services"></iframe> -->
         </section>
 
-        <!-- Contact Section -->
-<!--        <section id="contact" class="contact-section">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-12">-->
-<!--                        <h1>Contact</h1>-->
-<!---->
-<!--                        <div class="col-lg-6">-->
-<!--                            <br>-->
-<!--                            <h3>Contact :</h3>-->
-<!--                            <strong>Télephone : </strong>01 02 03 04 05-->
-<!--                            <br>-->
-<!--                            <strong>E-mail : </strong>sample@dummy.com-->
-<!---->
-<!--                        </div>-->
-<!--                        <div class="col-lg-6">-->
-<!--                            <br>-->
-<!--                            <h3>Adresse :</h3>-->
-<!--                            <p> 10 downing Street </p>-->
-<!--                            <div id="googleMap"></div>-->
-<!---->
-<!---->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
@@ -147,34 +109,16 @@ foreach($professionnals as $pro){
         <script src='js/moment-with-locales.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js'></script>
         <script type="text/javascript">
-            $(document).ready(function() {
 
-                var availableTags = [
-                    "ActionScript",
-                    "AppleScript",
-                    "Asp",
-                    "BASIC",
-                    "C",
-                    "C++",
-                    "Clojure",
-                    "COBOL",
-                    "ColdFusion",
-                    "Erlang",
-                    "Fortran",
-                    "Groovy",
-                    "Haskell",
-                    "Java",
-                    "JavaScript",
-                    "Lisp",
-                    "Perl",
-                    "PHP",
-                    "Python",
-                    "Ruby",
-                    "Scala",
-                    "Scheme"
-                ];
+            // A FINIR voir openclassroom
+
+            $(document).ready(function() {
                 $( "#input-service" ).autocomplete({
-                    source: availableTags,
+                    source: '../controller/ajax_get_services.php',
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        $('#form-address').css("visibility", "visible");
+                    }
                 });
 
                 $('#service-search').click(function () {

@@ -40,4 +40,47 @@
 	    }
 	}
 
+function getServicesName($nameEnter)
+{
+    $pdo = connexionBdd();
+    $services = null;
+
+    $sql = "SELECT name
+	    FROM services
+	    WHERE name LIKE :nameEnter";
+
+    try{
+        $requete = $pdo->prepare($sql);
+        $requete->execute(array(":nameEnter" => '%'.$nameEnter.'%'));
+
+
+        $nameServices = $requete->fetchAll();
+        $requete->CloseCursor();
+        $requete = null;
+
+    }catch(PDOException $e){
+        $requete = null;
+        echo 'Erreur getLesInfos : ' . $e->getMessage() . '';
+        die();
+    }
+    if($nameServices){
+        $json = "[";
+        $first = true;
+        foreach($nameServices as $name){
+            if (!$first){
+                $json .=  ',';
+            }else{
+                $first = false;
+            }
+            $json .= '"'. $name["name"]. '"';
+
+        }
+        $json .= ']';
+        return $json;
+
+    }else{
+        return NULL;
+    }
+}
+
 ?>
