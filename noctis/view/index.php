@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 require_once "../model/accesBdd.php";
 require_once '../model/_service.php';
 require_once '../model/_professionnal.php';
@@ -27,7 +30,7 @@ foreach($professionnals as $pro){
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/style.css">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css' />
-        <link rel="stylesheet" href="css/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
 
 	</head>
 
@@ -49,9 +52,26 @@ foreach($professionnals as $pro){
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <?php
+                            if(isset($_SESSION["type"]) && !is_null($_SESSION["type"])) {
+echo <<<HTML
+                <li>
+                    <a class ="page-scroll" href="clientPanel.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
+            </li> 
+
                         <li>
-                            <a class="page-scroll" href="login.php">Connexion</a>
-                        </li>
+                                <a class="page-scroll" href="deconnexion.php">Déconnexion</a>
+                            </li> 
+HTML;
+                            } else {
+                                echo <<<HTML
+
+                        <li>
+                                <a class="page-scroll" href="login.php">Connexion</a>
+                            </li> 
+HTML;
+                            }
+                        ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

@@ -57,8 +57,13 @@ of those sections to manage the look and feel of the site. */
 .overlay-color {
     background-color: rgba(78, 168, 194, 0.7);
     height: 100%;
-
 }
+
+.ui-autocomplete {
+    background: #4a4a4a;
+    border-radius:10px;
+}
+
 
 #calendar, #form-address {
     visibility: hidden;

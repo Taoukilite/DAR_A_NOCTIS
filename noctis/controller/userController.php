@@ -3,17 +3,15 @@
 	function authenticate($login, $pwd){
 
 		$pwd = hash("sha256", $pwd);
-
-
 	    $user = login($login, $pwd);
-
-
 
 	    if($user != NULL)
 	    {
 	        session_start();
 	        $_SESSION["UID"] = $user->getId();
 	        $_SESSION["type"] = get_class($user);
+	        $_SESSION["name"] = $user->getName();
+	        $_SESSION["firstname"] = $user->getFirstname();
 
 
 	        if($_SESSION["type"] == "Manager") {
@@ -105,7 +103,6 @@
 		}
 		return true;
 	}
-
 
 	function updateUser($info, $value){
 		
