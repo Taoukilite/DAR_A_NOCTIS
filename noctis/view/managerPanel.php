@@ -7,17 +7,16 @@ if(!isset($_SESSION["type"]) || $_SESSION["type"] != "Manager")
 	header("Location: index.php");
 }
 
-include("includes/menubar.php");
+include("includes/menubar_new.php");
 ?>
 
-	<body>
 
-		<div class="jumbotron" style="height: 100vh;">
-			<div class="container">
-				<h1>Benvenue sur l'interface de gestionnaire</h1>
-				
-			</div>
-		</div>
+<br>
+<div class="container">
+    <div class="page-header">
+        <h1>Interface de gestion</h1>
+    </div>
+</div>
 
 
 

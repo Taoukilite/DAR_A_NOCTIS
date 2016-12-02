@@ -17,7 +17,8 @@ $professionnals = getProfessionnals();
 foreach($professionnals as $pro){
 	setSuppliedServices($pro);
 }
-include("includes/menubar.php");
+
+include("includes/menubar_new.php");
 
 ?>
 
@@ -26,87 +27,89 @@ include("includes/menubar.php");
 		<br>
 		<div class="container">
 		    <div class="page-header">
-		        <h1>Services disponibles</h1>
+		        <h1>Mes rendez-vous</h1>
 		    </div>
 
-		    <div class="row">
-		        <div class="col-md-4">
-		            <h3>Catégories de services</h3>
-		            <div class="list-group" style="max-height: 250px; overflow: auto;">
-		            	<a class="list-group-item service">Tous</a>
-		                <?php 
+<!--		    <div class="row">-->
 
-		                	foreach($services as $s)
-		                	{
-		                		echo "<a id='". $s->getName() ."' class='list-group-item service'>". $s->getName() . "</a>";
-		                	}
-		                ?>
-		            </div>
-		        </div>
-
-		        <div class="col-md-8">
-		            <h3>Services disponibles</h3>
-		            <div style="max-height: 400px;">
-		                <table id="proTable">
-		                    <thead>
-			                    <tr>
-			                        <th>Nom</th>
-			                        <th>Adresse</th>
-			                        <th style="width:33%">Services</th>
-			                    </tr>
-		                    </thead>
-		                    <tbody>
-			                    
-			                    <?php
-			                    	foreach($professionnals as $pro)
-			                    	{
-			                    		echo "<tr class='professionnal ";
-
-			                    		if($pro->getSuppliedServices() != NULL)
-			                    		{
-				                    			foreach($pro->getSuppliedServices() as $service){
-				                    			echo $service->getName() . " ";
-				                    		}
-			                    		}
-
-			                    		echo "'>";
-
-
-			                    		echo "<td> <a href='professionnalDescription.php?idpro=". $pro->getId() ."' target='_blank'>". $pro->getName() . " " . $pro->getFirstName() . "</a></td>";
-
-			                    		echo "<td>" . $pro->getAddress() . ", " . $pro->getTown() . " [".$pro->getPostalCode() . "]</td>";
-
-
-			                    		
-			                    		echo "<td>";
-
-
-			                    		if($pro->getSuppliedServices() != NULL)
-			                    		{
-				                    			foreach($pro->getSuppliedServices() as $service){
-				                    			echo $service->getName() . " ";
-				                    		}
-			                    		}else{
-			                    			echo "Aucun";
-			                    		}
-			                    		
-			                    		echo "</td>";
-
-			                    		echo "</tr>";
-			                    	}
-			                    ?>
-		                    </tbody>
-		                </table>
-		            </div>
-		        </div>
-		    </div>
-
-		    <br>
-
-
-		    <div style="height:40%; width:inherit; position:absolute; overflow: hidden">
-	    		<div id="map"></div>
-		    </div>
+<!--		        <div class="col-md-12">-->
+<!--		            <h3>-->
+<!--		            	Services disponibles dans un rayon de -->
+<!---->
+<!--						<select>-->
+<!--							<option class="radius" value="1">1</option>-->
+<!--							<option class="radius" value="5" selected>5</option>-->
+<!--							<option class="radius" value="10">10</option>-->
+<!---->
+<!--						</select>-->
+<!--						Km-->
+<!---->
+<!---->
+<!--		            </h3>-->
+<!--		            <div style="max-height: 400px;">-->
+<!--		                <table id="proTable">-->
+<!--		                    <thead>-->
+<!--			                    <tr>-->
+<!--			                        <th>Nom</th>-->
+<!--			                        <th>Adresse</th>-->
+<!--			                        <th>Services</th>-->
+<!--			                        <th style="width: 10%;">Note</th>-->
+<!--			                    </tr>-->
+<!--		                    </thead>-->
+<!--		                    <tbody>-->
+<!--			                    -->
+<!--			                    --><?php
+//			                    	foreach($professionnals as $pro)
+//			                    	{
+//			                    		echo "<tr class='professionnal ";
+//
+//			                    		if($pro->getSuppliedServices() != NULL)
+//			                    		{
+//				                    			foreach($pro->getSuppliedServices() as $service){
+//				                    			echo $service->getName() . " ";
+//				                    		}
+//			                    		}
+//
+//			                    		echo "'>";
+//
+//
+//			                    		echo "<td> <a href='professionnalDescription.php?idpro=". $pro->getId() ."' target='_blank'>". $pro->getName() . " " . $pro->getFirstName() . "</a></td>";
+//
+//			                    		echo "<td>" . $pro->getAddress() . ", " . $pro->getTown() . " [".$pro->getPostalCode() . "]</td>";
+//
+//
+//
+//			                    		echo "<td>";
+//
+//
+//			                    		if($pro->getSuppliedServices() != NULL)
+//			                    		{
+//				                    			foreach($pro->getSuppliedServices() as $service){
+//				                    			echo $service->getName() . " ";
+//				                    		}
+//			                    		}else{
+//			                    			echo "Aucun";
+//			                    		}
+//
+//			                    		echo "</td>";
+//
+//			                    		echo "<td>replace me</td>";
+//
+//			                    		echo "</tr>";
+//			                    	}
+//			                    ?>
+<!--		                    </tbody>-->
+<!--		                </table>-->
+<!--		            </div>-->
+<!--		        </div>-->
+<!--		    </div>-->
+<!---->
+<!--		    <br>-->
+<!---->
+<!---->
+<!--		    <div style="height:40%; width:inherit; position:absolute; overflow: hidden">-->
+<!--	    		<div id="map"></div>-->
+<!--		    </div>-->
 		</div>
 
 
@@ -136,7 +139,7 @@ include("includes/menubar.php");
 
 
 	</script>
-	<script src="js/proArray.js"></script>
+	<!-- <script src="js/proArray.js"></script> -->
 	<script src="js/location.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8&signed_in=true&callback=initMap" async defer></script>
 
