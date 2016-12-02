@@ -69,6 +69,8 @@ HTML;
                         <li>
                                 <a class="page-scroll" href="login.php">Connexion</a>
                             </li> 
+<li>
+                                <a class="page-scroll" href="inscription.php">S'inscrire</a></li>
 HTML;
                             }
                         ?>
