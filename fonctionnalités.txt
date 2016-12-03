@@ -3,3 +3,4 @@ Fonctionnalité disponibles:
     - connexion
     - inscription/création de compte (client uniquement)
     - affichage/modification profil
+    - documentation/modélisation
