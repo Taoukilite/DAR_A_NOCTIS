@@ -9,8 +9,8 @@
 
 		// Constructeur
 
-		function __construct($id, $name, $firstname, $login){
-			parent::__construct($id, $name, $firstname, $login, null, null, null);
+		function __construct($id, $name, $firstname, $login, $mail){
+			parent::__construct($id, $name, $firstname, $login, null, null, null, $mail);
 			$this->_id = $id;
 			$this->_login = $login;
 		}

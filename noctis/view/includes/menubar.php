@@ -20,6 +20,7 @@ if(!isset($_SESSION["UID"])){
         <link href="css/administration.css" rel="stylesheet">
         <link href="css/datatables.css" rel="stylesheet">
         <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
 
     </head>
         <body>

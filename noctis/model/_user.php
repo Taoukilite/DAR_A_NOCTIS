@@ -12,10 +12,11 @@
 		private $_address;
 		private $_town;
 		private $_postalCode;
+		private $_mail;
 
 		// Constructeur
 
-		function __construct($id, $name, $firstname, $login, $address, $town, $postalCode)
+		function __construct($id, $name, $firstname, $login, $address, $town, $postalCode, $mail)
 		{
 			$this->_id = $id;
 			$this->_name = $name;
@@ -24,7 +25,15 @@
 			$this->_address = $address;
 			$this->_town = $town;
 			$this->_postalCode = $postalCode;
+			$this->_mail = $mail;
+
 		}
+
+
+        function getMail()
+        {
+            return $this->_mail;
+        }
 
 
 		// Getters
@@ -77,12 +86,18 @@
 			$str .= '<br />';
 			$str .= 'login : ';
 			$str .= $this->getLogin();
-			
+
 			return $str;
 		}
 
-		
-	}
+//        public function castAs($newClass) {
+//            $obj = new $newClass;
+//            foreach (get_object_vars($this) as $key => $name) {
+//                $obj->$key = $name;
+//            }
+//            return $obj;
+//        }
+    }
 
 
 	

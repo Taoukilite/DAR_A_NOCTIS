@@ -1,0 +1,6 @@
+Pour utiliser :
+
+décompresser le zip dans le dossier d'un serveur,
+accéder à l'aide d'un navigateur au fichier /INFO0708/noctis/index.php
+
+importer la base de données sql (/INFO0708/sql/noctis_last.sql)
