@@ -131,9 +131,7 @@ HTML;
         <script src='js/moment-with-locales.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js'></script>
         <script type="text/javascript">
-
             // A FINIR voir openclassroom
-
             $(document).ready(function() {
                 $( "#input-service" ).autocomplete({
                     source: '../controller/ajax_get_services.php',
@@ -156,6 +154,39 @@ HTML;
                     defaultView: 'agendaWeek',
                     height: 500,
                     header: { left: 'prev,next today month,agendaWeek', right: '' }
+                    // put your options and callbacks here
+                })
+
+                $('#calendar').fullCalendar({
+                    defaultView: 'agendaWeek',
+                    height: 500,
+                    header: { left: 'prev,next today month,agendaWeek', right: '' },
+                    events: [
+                        {
+                            title  : 'event1',
+                            start  : '2016-12-01'
+                        },
+                        {
+                            title  : 'event2',
+                            start  : '2016-12-05',
+                            end    : '2016-12-07'
+                        },
+                        {
+                            title  : 'event3',
+                            start  : '2016-12-09T12:30:00',
+                            allDay : false // will make the time show
+                        }
+                    ],
+                    eventClick: function (event) {
+                        alert(event);
+                    },
+                    drop: function(date) {
+                        alert("Dropped on " + date.format());
+                    },
+
+                    droppable: true,
+                    editable: true
+
                     // put your options and callbacks here
                 })
 
