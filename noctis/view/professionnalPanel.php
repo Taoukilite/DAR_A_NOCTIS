@@ -5,16 +5,17 @@ if(!isset($_SESSION["type"]) || $_SESSION["type"] != "Professionnal")
 {
 	header("Location: index.php");
 }
-
-include("includes/menubar_new.php");
+include("includes/menubar.php");
 ?>
 
-<br>
-<div class="container">
-    <div class="page-header">
-        <h1>Mes interventions</h1>
+	<body>
+
+		<div class="jumbotron" style="height: 100vh;">
+			<div class="container">
+				<h1>Benvenue sur l'interface de gestion</h1>
+				
+			</div>
 		</div>
-</div>
 
 
 

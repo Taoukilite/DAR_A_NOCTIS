@@ -1,6 +1,0 @@
-Fonctionnalité disponibles:
-    - autocomplete services --> affiche champ adresse
-    - connexion
-    - inscription/création de compte (client uniquement)
-    - affichage/modification profil
-    - documentation/modélisation

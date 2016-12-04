@@ -10,6 +10,10 @@ if(isset($_POST["create"])){
 	if(createUser($name, $firstname, $login, $pwd, $town, $postal, $address, $mail, 3)){
 		echo "<script type='text/javascript'>alert('Votre compte à bien été créé, vous pouvez désormais vous connecter');</script>";
 	}
+
+
+
+
 }
 
 ?>

@@ -3,15 +3,17 @@
 	function authenticate($login, $pwd){
 
 		$pwd = hash("sha256", $pwd);
+
+
 	    $user = login($login, $pwd);
+
+
 
 	    if($user != NULL)
 	    {
 	        session_start();
 	        $_SESSION["UID"] = $user->getId();
 	        $_SESSION["type"] = get_class($user);
-	        $_SESSION["name"] = $user->getName();
-	        $_SESSION["firstname"] = $user->getFirstname();
 
 
 	        if($_SESSION["type"] == "Manager") {
@@ -21,90 +23,55 @@
 	        }elseif ($_SESSION["type"] == "Client") {
 	            header("Location: clientPanel.php");
 	        }
-
 	    }
 	}
 
 
 
 	function login($login, $pwd)
-    {
-        $result = null;
-        $pdo = connexionBdd();
-
-        $sql = "SELECT id, name, firstname, login, address, town, postal, type, mail
+	{
+		$result = null;
+	    $pdo = connexionBdd();
+	    
+	    $sql = "SELECT id, name, firstname, login, address, town, postal, type
 	    FROM users
 	    WHERE login = :login 
 	    AND password = :pwd";
+	    
+	    try{
+	        
+	        $request = $pdo->prepare($sql);
+	        $request->execute(array(
+	            ':login'=> $login,
+	            ':pwd'=> $pwd,
+	        ));
+	        
+	        $result = $request->fetch();
+	        $request->CloseCursor();
+	        $request = null;
+	        
+	    }catch(PDOException $e){
+	        $request = null;
+	        echo 'Erreur getProf : ' . $e->getMessage() . '';
+	        die();
+	    }
+	    if($result){
+	    	extract($result);
+	    	$user = null;
 
-        try {
-
-            $request = $pdo->prepare($sql);
-            $request->execute(array(
-                ':login' => $login,
-                ':pwd' => $pwd,
-            ));
-
-            $result = $request->fetch();
-            $request->CloseCursor();
-            $request = null;
-
-        } catch (PDOException $e) {
-            $request = null;
-            echo 'Erreur getProf : ' . $e->getMessage() . '';
-            die();
-        }
-        if ($result) {
-            extract($result);
-            $user = null;
-            if ($type == 1)
-                $user = new Manager($id, $name, $firstname, $login, null, null, null, $mail);
-            elseif ($type == 2) {
-                $user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal, $mail);
-            } elseif ($type == 3) {
-                $user = new Client($id, $name, $firstname, $login, $address, $town, $postal, $mail);
-            }
-            return $user;
-        } else {
-            return NULL;
-        }
-    }
-
-    /**
-     * Retourne objet user (idUser)
-     *
-     * @param $idUser
-     * @return mixed
-     * @throws Exception
-     */
-    function getUserById($idUser)
-    {
-        $pdo = connexionBdd();
-        $sql = <<<SQL
-            SELECT *
-            FROM users
-            WHERE id=:idUser
-SQL;
-
-
-        try {
-            $request = $pdo->prepare($sql);
-            $request->setFetchMode(PDO::FETCH_CLASS, "User");
-            $request->execute(array(
-                ':idUser'=> $idUser,
-            ));
-
-            $data = $request->fetch();
-            $request->CloseCursor();
-            $request = null;
-            return $data;
-        } catch (PDOException $e) {
-            $request = null;
-            echo 'Erreur getProf : ' . $e->getMessage() . '';
-            die();
-        }
-        return null;
-    }
+	    	if($type == 1)
+	    		$user = new Manager($id, $name, $firstname, $login, null, null, null);
+	    	elseif ($type == 2) {
+	    		$user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal);
+	    	}
+	    	elseif ($type == 3) {
+	    		$user = new Client($id, $name, $firstname, $login, $address, $town, $postal);
+	    	}
+	    	return $user;
+	    }else{
+	    	return NULL;
+	    }
+	}
 
 	function createUser($name, $firstname, $login, $pwd, $town, $postal, $address, $mail, $type){
 
@@ -139,34 +106,35 @@ SQL;
 		return true;
 	}
 
+
 	function updateUser($info, $value){
-
+		
 		if(!isset($_SESSION['UID'])){
-			return 'Error updateUser : ' . $e->getMessage() . '';
+			echo 'Error updateUser : ' . $e->getMessage() . '';
+			die();
 		}
-
+			
 		$requete = null;
 		if($info=="pwd")
 			$value = hash("sha256", $value);
 		$pdo = connexionBdd();
 
-		// Pour prévenir injection sql, on enlève tout sauf A-Z et _
-        $info = preg_replace('/[^a-zA-Z_]*/', '', $info);
-		$sql = "
-UPDATE users
-		SET $info = :valu
-		WHERE id = :id
-";
+		$sql = "UPDATE users 
+		SET :info = :value
+		WHERE id = :id";
 
 		try{
+
 			$requete = $pdo->prepare($sql);
 			$requete->execute(array(
 				':id'=> $_SESSION['UID'],
-				':valu'=> $value
+				':value'=> $value,
+				':info'=> $info
 			));
 
 		}catch(PDOException $e){
-			return 'Error updateUser : ' . $e->getMessage() . '';
+			echo 'Error updateUser : ' . $e->getMessage() . '';
+			die();
 		}
 		return true;
 	}

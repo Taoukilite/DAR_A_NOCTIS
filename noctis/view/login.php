@@ -7,6 +7,9 @@ $wrongPwd = "";
 
 if(isset($_POST["login"]) && isset($_POST["pwd"])){
     extract($_POST);
+
+
+
     authenticate($login, $pwd);
 }
 

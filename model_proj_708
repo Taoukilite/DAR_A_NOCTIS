@@ -104,8 +104,7 @@ PRO :
 	adresse
 	services
 	Note
-
-Agenda
+	Agenda
 
 
 SERVICES :
@@ -166,18 +165,3 @@ Repartition des taches :
 
 
 	Administrateurs
-
-pro : arrhes?
-- donne dispo
-
-
-
-
-
-	----------------
-	----------------
-ergonomie : fast access
-
-faire bdd: Jolie modelisation
-    - adresse / services (mobile)
-    - interface propre / simple
