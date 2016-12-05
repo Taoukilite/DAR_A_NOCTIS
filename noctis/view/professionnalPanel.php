@@ -51,7 +51,7 @@ include("includes/menubar_new.php");
 
 <!--<script src="js/app.js"></script>-->
 <script src="js/jquery.easing.min.js"></script>
-<script src="js/fullcalendar-3.0.1/lib/jquery-ui.min.js"></script>
+<script src="js/fullcalendar/lib/jquery-ui.min.js"></script>
 <script src="js/professionnalCalendar.js"></script>
 
 </html>

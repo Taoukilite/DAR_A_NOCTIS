@@ -87,18 +87,20 @@ HTML;
                 <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form class="form-inline home-form">
+                        <form class="form-inline home-form" method="post">
                             <div class="form-group">
-                                <input class="form-control input-lg home-input-service" name="service-search" id="input-service" type="text" placeholder="Service recherché">
+                                <input class="form-control input-lg home-input-service" name="input-search"
+                                       id="input-service" type="text" placeholder="Service recherché" />
                             </div>
                             <button type="button" class="input-lg home-input-submit btn btn-default" id="service-search">Trouver votre service</button>
                         </form>
                     </div>
 
                     <div class="col-sm-12" id="form-address">
-                        <form class="form-inline home-form">
+                        <form class="form-inline home-form" method="post">
                             <div class="form-group">
-                                <input class="form-control input-lg home-input-address" type="text" placeholder="Entrez votre adresse">
+                                <input class="form-control input-lg home-input-address" name="input-address"
+                                       id="input-address" type="text" placeholder="Entrez votre adresse" value="5 test" />
                             </div>
                             <button type="button" class="input-lg home-input-submit btn btn-default" id="valid-address">Valider votre adresse</button>
                         </form>
@@ -115,11 +117,11 @@ HTML;
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Disponibilité Services</h1>
+                        <h2>Indisponibilité affichées</h2>
                         <div id='calendar' ></div>
                     </div>
                 </div>
             </div>
-            <!-- <iframe src="#" class="frame-services"></iframe> -->
         </section>
 
         <script src="js/jquery.js"></script>
@@ -127,70 +129,9 @@ HTML;
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src='js/jquery.js'></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="js/fullcalendar/lib/jquery-ui.min.js"></script>
         <script src='js/moment-with-locales.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js'></script>
-        <script type="text/javascript">
-            // A FINIR voir openclassroom
-            $(document).ready(function() {
-                $( "#input-service" ).autocomplete({
-                    source: '../controller/ajax_get_services.php',
-                    minLength: 1,
-                    select: function( event, ui ) {
-                        $('#form-address').css("visibility", "visible");
-                    }
-                });
-
-                $('#service-search').click(function () {
-                    $('#form-address').css("visibility", "visible");
-                });
-
-                $('#valid-address').click(function () {
-                    $('#calendar').css("visibility", "visible");
-                });
-
-                // FULL CALENDAR
-                $('#calendar').fullCalendar({
-                    defaultView: 'agendaWeek',
-                    height: 500,
-                    header: { left: 'prev,next today month,agendaWeek', right: '' }
-                    // put your options and callbacks here
-                })
-
-                $('#calendar').fullCalendar({
-                    defaultView: 'agendaWeek',
-                    height: 500,
-                    header: { left: 'prev,next today month,agendaWeek', right: '' },
-                    events: [
-                        {
-                            title  : 'event1',
-                            start  : '2016-12-01'
-                        },
-                        {
-                            title  : 'event2',
-                            start  : '2016-12-05',
-                            end    : '2016-12-07'
-                        },
-                        {
-                            title  : 'event3',
-                            start  : '2016-12-09T12:30:00',
-                            allDay : false // will make the time show
-                        }
-                    ],
-                    eventClick: function (event) {
-                        alert(event);
-                    },
-                    drop: function(date) {
-                        alert("Dropped on " + date.format());
-                    },
-
-                    droppable: true,
-                    editable: true
-
-                    // put your options and callbacks here
-                })
-
-            });
-        </script>
+        <script src='js/fullcalendar/fullcalendar.min.js'></script>
+        <script src="js/indexCalendar.js"></script>
     </body>
 </html>

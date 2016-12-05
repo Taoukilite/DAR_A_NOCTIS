@@ -2,6 +2,8 @@ $(document).ready(function(){
 
     $("#appointmentPanel").hide();
     $('#calendar').fullCalendar({
+        locale: 'fr',
+        slotLabelFormat:"HH:mm",
         defaultView: 'agendaWeek',
         height: 500,
         header: { left: 'prev,next today month,agendaWeek', right: '' },
