@@ -24,6 +24,37 @@ include("includes/menubar_new.php");
 		    </div>
 
 		    <div class="row">
+	            <div class="col-md-12">
+	                <div class="panel panel-primary" id="appointmentPanel">
+	                    <h2 id="title"></h2>
+	                    <div class="panel panel-default" >
+	                        <div class="panel-body" >
+	                            
+	                            <div hidden id="appointmentId"></div>
+	                            <div hidden id="stateId"></div>
+	                            <div hidden id="start"></div>
+	                            
+	                            <h3>Service : <span id="serviceName"></span><br></h3>
+	                            
+	                            <div hidden id="devis">
+		                            <h3>Devis</h3>
+		                            <h4>Prix : <span id="price"></span>€</h4>
+	                            </div>
+	                            <div id ="inputGroupConfirmation">
+	                            	<h4>Valider le devis et confirmer l'intervention</h4>
+	                                <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
+	                                <button type="button" id="btnCancel" class="btn btn-danger">Refuser</button>
+	                            </div>
+	                            <div id="noConfirmation">
+	                                <h3>Aucune confirmation nécessaire pour le moment</h3>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+		    <div class="row">
 		    	<div class="col-md-12">
 			    	Légende : <br>
 	                <svg width="20" height="20">

@@ -47,7 +47,7 @@
 	{
 	    $pdo = connexionBdd();
 
-	    $sql = "SELECT S.name, A.start, A.end, A.state, A.id AS appointmentId
+	    $sql = "SELECT S.name, A.start, A.end, A.state, A.price, A.id AS appointmentId
 	            FROM appointment AS A
 	            JOIN services AS S ON S.id = A.serviceId
 	            WHERE A.clientId = :clientId";
