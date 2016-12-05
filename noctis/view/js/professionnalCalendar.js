@@ -27,6 +27,15 @@ $(document).ready(function(){
             $("#stateId").text(event.state);
             $("#start").text(dateAppointment);
 
+            if(event.state == 0)
+            {
+                $("#inputGroupConfirmation").show();
+                $("#noConfirmation").hide();
+            }else{
+                $("#inputGroupConfirmation").hide();
+                $("#noConfirmation").show();
+            }
+
         },
         drop: function(date) {
             alert("Dropped on " + date.toLocaleString());

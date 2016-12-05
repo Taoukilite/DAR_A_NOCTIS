@@ -34,8 +34,13 @@ include("includes/menubar_new.php");
                             <input type="text" name="duration" id="duration"/>
                             <label>Prix :</label>
                             <input type="text" name="price" id="price"><br>
-                            <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
-                            <button type="button" id="btnCancel" class="btn btn-danger">Refuser</button>
+                            <div id ="inputGroupConfirmation">
+                                <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
+                                <button type="button" id="btnCancel" class="btn btn-danger">Refuser</button>
+                            </div>
+                            <div id="noConfirmation">
+                                <h3>Aucune confirmation nécessaire pour le moment</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,6 +49,18 @@ include("includes/menubar_new.php");
 
         <div class="row">
             <div class="col-md-12">
+                Légende : <br>
+                <svg width="20" height="20">
+                   <circle cx="10" cy="10" r="10" fill="green" />
+                </svg> Nouvelle intervention
+
+                <svg width="20" height="20">
+                   <circle cx="10" cy="10" r="10" fill="blue" />
+                </svg> Devis envoyé, attente de la réponse du client.
+
+                <svg width="20" height="20">
+                   <circle cx="10" cy="10" r="10" fill="purple" />
+                </svg> Intervention prête à être réalisée.
                 <div id="calendar"></div>
             </div>
 

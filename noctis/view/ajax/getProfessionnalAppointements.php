@@ -35,6 +35,7 @@
 		elseif ($a["state"] == 2) {
 			$color = "purple";
 		}
+		$a["title"] = $a["name"] . " - " . $a["town"];
 		$a["color"] = $color;
 		array_push($jsonAppointments, $a);
 
