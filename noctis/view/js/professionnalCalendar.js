@@ -45,6 +45,8 @@ $(document).ready(function(){
         //      - durée d'interv
         //      - etat += 1
 
+        
+
 
 
         if($("#duration").val() != "" && $("#price").val() != "")
@@ -62,6 +64,7 @@ $(document).ready(function(){
             resultConfirm.done(function(data){
                 console.log(data);
                 console.log("Requete terminée");
+                location.reload();
             });
 
         }
@@ -73,9 +76,17 @@ $(document).ready(function(){
 
     $("#btnCancel").click(function(){
         console.log("Clicked cancel");
-        // Todo $.post update de l'appointment :
-        //      - recherche d'un nouveau pro
-        //      - etat -= 1
+        
+
+
+        if(confirm("Etes vous sur(e) de refuser cette intervention ?") == true)
+        {
+            console.log("finish me (cf comments)");
+            // Todo $.post update de l'appointment :
+            //      - recherche d'un nouveau pro
+            //      - etat -= 1
+
+        }
     })
 
 

@@ -35,7 +35,7 @@ include("includes/menubar_new.php");
                             <label>Prix :</label>
                             <input type="text" name="price" id="price"><br>
                             <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
-                            <button type="button" id="btnCancel" class="btn btn-danger">Annuler</button>
+                            <button type="button" id="btnCancel" class="btn btn-danger">Refuser</button>
                         </div>
                     </div>
                 </div>

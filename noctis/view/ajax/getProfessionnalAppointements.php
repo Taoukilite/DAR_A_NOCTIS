@@ -25,8 +25,17 @@
 		$a["end"] = new DateTime($a["end"]);
 
 		$a["end"] = $a["end"]->format(DateTime::ATOM);
-		
 
+		$color = "default";
+
+		if($a["state"] == 0)
+		{
+			$color = "green";
+		}
+		elseif ($a["state"] == 2) {
+			$color = "purple";
+		}
+		$a["color"] = $color;
 		array_push($jsonAppointments, $a);
 
 
