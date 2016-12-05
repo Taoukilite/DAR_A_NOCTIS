@@ -2,10 +2,10 @@
 -- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 23, 2016 at 10:19 
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.24
+-- Client :  127.0.0.1
+-- Généré le :  Lun 05 Décembre 2016 à 10:14
+-- Version du serveur :  5.7.9
+-- Version de PHP :  7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,48 +17,136 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `noctis`
+-- Base de données :  `noctis`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `appointment`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `appointment`;
+CREATE TABLE IF NOT EXISTS `appointment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serviceId` int(11) NOT NULL,
+  `clientId` int(11) NOT NULL,
+  `professionnalId` int(11) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  `price` float NOT NULL,
+  `state` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `serviceId`, `clientId`, `professionnalId`, `start`, `end`, `price`, `state`) VALUES
+(1, 1, 5, 2, '2016-12-07 10:00:00', '2016-12-07 10:50:00', 30, 1),
+(2, 2, 5, 2, '2016-12-09 15:00:00', '2016-12-09 19:00:00', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `services`
+--
+
+DROP TABLE IF EXISTS `services`;
+CREATE TABLE IF NOT EXISTS `services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `services`
+--
+
+INSERT INTO `services` (`id`, `name`) VALUES
+(1, 'couvreur'),
+(2, 'carreleur'),
+(3, 'plombier'),
+(4, 'peintre');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `service_supplier`
+--
+
+DROP TABLE IF EXISTS `service_supplier`;
+CREATE TABLE IF NOT EXISTS `service_supplier` (
+  `professionnalId` int(11) NOT NULL,
+  `serviceId` int(11) NOT NULL,
+  UNIQUE KEY `professionnalId` (`professionnalId`,`serviceId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `service_supplier`
+--
+
+INSERT INTO `service_supplier` (`professionnalId`, `serviceId`) VALUES
+(2, 1),
+(2, 2),
+(6, 2),
+(7, 1),
+(8, 3),
+(9, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
-  `adresse` varchar(250) NOT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `town` varchar(250) DEFAULT NULL,
+  `postal` varchar(10) DEFAULT NULL,
+  `mail` varchar(250) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `password` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `firstname`, `adresse`, `type`, `login`, `password`) VALUES
-(1, 'dupont', 'jean', '', 1, 'gest', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
-(2, 'smith', 'john', '', 2, 'pro', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
-(18, 'john ', 'terry', '145 avenue jaures', 3, 'lebowski', '15c6d611193988e468c7431229c59ce13b0407fba24f11d36c42680d7fa11e98'),
-(15, 'frank', 'lampard', '15 chelski ', 0, 'lebowski', '35a9e381b1a27567549b5f8a6f783c167ebf809f1c4d6a9e367240484d8ce281');
+INSERT INTO `users` (`id`, `name`, `firstname`, `address`, `town`, `postal`, `mail`, `type`, `login`, `password`) VALUES
+(1, 'dupont', 'jean', NULL, NULL, NULL, 'test', 1, 'gest', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(2, 'changedName', 'john', '1 rue Piperrrr', 'Reimsrrr', '51100', 'testtts@test.yoloo', 2, 'pro', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(3, 'Fritz', 'Johann', '', 'test', '51104', 'tes', 3, 'client', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 '),
+(4, 'Landru', 'Henri Désire', 'Rue de la machine', 'Paris', '75001', 'cuisinier@gmail.com', 3, 'Landru', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
+(5, 'nom', 'prenom', '1bis rue werlé', 'Reims', '51100', 'mail', 3, 'login', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
+(6, 'pro', 'pro', '3 rue Jean Jaurès', 'Reims', '51100', 'test', 2, '', ''),
+(7, 'pro2', 'pro2', '4 rue du champ de mars', 'Reims', '51100', 'test', 2, '', ''),
+(8, 'por3', 'pro3', '5 rue de Clovis', 'Reims', '51100', 'est', 2, '', ''),
+(9, 'pro4', 'pro4', '12 rue du temple', 'Reims', '51100', 'test', 2, '', ''),
+(10, 'changedName', 'tointoin', '25 rue des corbillard', 'reims', '51100', 'test@sample.fr', 3, 'test1', '1b4f0e9851971998e732078544c96b36c3d01cedf7caa332359d6f1d83567014');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_types`
+-- Structure de la table `user_types`
 --
 
-CREATE TABLE `user_types` (
-  `id` int(11) NOT NULL,
-  `label` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `user_types`;
+CREATE TABLE IF NOT EXISTS `user_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_types`
+-- Contenu de la table `user_types`
 --
 
 INSERT INTO `user_types` (`id`, `label`) VALUES
@@ -66,36 +154,6 @@ INSERT INTO `user_types` (`id`, `label`) VALUES
 (2, 'professionnel'),
 (3, 'client');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_types`
---
-ALTER TABLE `user_types`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `user_types`
---
-ALTER TABLE `user_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

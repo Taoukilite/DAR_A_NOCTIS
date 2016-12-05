@@ -150,7 +150,77 @@ require_once "../model/accesBdd.php";
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
+<<<<<<< HEAD
 
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8"></script>
+=======
+        <script src="js/bootstrap.js"></script>
+        <script src='js/jquery.js'></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src='js/moment-with-locales.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js'></script>
+        <script type="text/javascript">
+            // A FINIR voir openclassroom
+            $(document).ready(function() {
+                $( "#input-service" ).autocomplete({
+                    source: '../controller/ajax_get_services.php',
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        $('#form-address').css("visibility", "visible");
+                    }
+                });
+
+                $('#service-search').click(function () {
+                    $('#form-address').css("visibility", "visible");
+                });
+
+                $('#valid-address').click(function () {
+                    $('#calendar').css("visibility", "visible");
+                });
+
+                // FULL CALENDAR
+                $('#calendar').fullCalendar({
+                    defaultView: 'agendaWeek',
+                    height: 500,
+                    header: { left: 'prev,next today month,agendaWeek', right: '' }
+                    // put your options and callbacks here
+                })
+
+                $('#calendar').fullCalendar({
+                    defaultView: 'agendaWeek',
+                    height: 500,
+                    header: { left: 'prev,next today month,agendaWeek', right: '' },
+                    events: [
+                        {
+                            title  : 'event1',
+                            start  : '2016-12-01'
+                        },
+                        {
+                            title  : 'event2',
+                            start  : '2016-12-05',
+                            end    : '2016-12-07'
+                        },
+                        {
+                            title  : 'event3',
+                            start  : '2016-12-09T12:30:00',
+                            allDay : false // will make the time show
+                        }
+                    ],
+                    eventClick: function (event) {
+                        alert(event);
+                    },
+                    drop: function(date) {
+                        alert("Dropped on " + date.format());
+                    },
+
+                    droppable: true,
+                    editable: true
+
+                    // put your options and callbacks here
+                })
+
+            });
+        </script>
+>>>>>>> refs/remotes/origin/develop
     </body>
 </html>
