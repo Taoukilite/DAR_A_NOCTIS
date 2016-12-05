@@ -28,7 +28,7 @@ function getProfessionnals()
 
         foreach($results as $res)
         {
-            $pro = new Professionnal($res["id"], $res["name"], $res["firstname"], null, null, $res["address"], $res["town"], $res["postal"]);
+            $pro = new Professionnal($res["id"], $res["name"], $res["firstname"], null, null, $res["address"], $res["town"], $res["postal"], $res["mail"]);
             array_push($professionnals, $pro);
         }
 
@@ -90,5 +90,4 @@ function setSuppliedServices(Professionnal $professionnal)
         return false;
     }
 }
-
 ?>
