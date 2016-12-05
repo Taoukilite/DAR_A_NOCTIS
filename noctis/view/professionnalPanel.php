@@ -16,24 +16,39 @@ include("includes/menubar_new.php");
     	</div>
 
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
+                <div class="panel panel-primary" id="appointmentPanel">
+                    <h2 id="title"></h2>
+                    <div class="panel panel-default" >
+                        <div class="panel-body" >
+                            
+                            <div hidden id="appointmentId"></div>
+                            <div hidden id="stateId"></div>
+                            <div hidden id="start"></div>
+                            
+                            <h3>Service : <span id="serviceName"></span><br></h3>
+                            <h4>Localisation : <span id="location"></span><br></h4>
+                            
+                            <h3>Devis</h3>
+                            <label>Durée :</label>
+                            <input type="text" name="duration" id="duration"/>
+                            <label>Prix :</label>
+                            <input type="text" name="price" id="price"><br>
+                            <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
+                            <button type="button" id="btnCancel" class="btn btn-danger">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <div id="calendar"></div>
             </div>
 
-            <div class="col-md-2" id="appointmentPanel">
-                <h2 id="title"></h2>
-                <br>
-                <p><h5>Service :</h5>
-                <span id="serviceName"></span><br>
-                <h5>Localisation :</h5><br>
-                <span id="location"> 1 bis rue werlé, Reims</span><br>
-                <h5>Devis</h5><br>
-                <label>Durée :</label>
-                <input type="text" name="duration" id="duration"/><br>
-                <label>Prix :</label>
-                <input type="text" name="price" id="price"><br>
-                <button type="button" id="btnConfirm" class="btn btn-primary">Confirmer</button>
-                <button type="button" id="btnCancel" class="btn btn-danger">Annuler</button>
+            
+                
 
                 </p>
 

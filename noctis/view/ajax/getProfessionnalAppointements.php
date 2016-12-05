@@ -13,7 +13,7 @@
 
 
 
-	$appointments = getAppointements($professionnalId);
+	$appointments = getAppointments($professionnalId);
 
 	$jsonAppointments = array();
 
@@ -36,12 +36,12 @@
 
 
 
-function getAppointements($professionnalId)
+function getAppointments($professionnalId)
 {
     $pdo = connexionBdd();
 
-    $sql = "SELECT U.id AS UserId, U.name, U.firstname, U.address, U.town, U.postal, S.name, A.start, A.end, A.state
-            FROM appointement AS A
+    $sql = "SELECT U.id AS UserId, U.name, U.firstname, U.address, U.town, U.postal, S.name, A.start, A.end, A.state, A.id AS appointmentId
+            FROM appointment AS A
             JOIN services AS S ON S.id = A.serviceId
             JOIN users AS U ON U.id = A.clientId
             WHERE A.professionnalId = :professionnalId";
