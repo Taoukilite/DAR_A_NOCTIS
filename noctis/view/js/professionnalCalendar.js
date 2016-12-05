@@ -3,9 +3,9 @@ $(document).ready(function(){
     $("#appointmentPanel").hide();
     $('#calendar').fullCalendar({
         defaultView: 'agendaWeek',
-        height: 500,
+        height: 800,
         header: { left: 'prev,next today month,agendaWeek', right: '' },
-        events: 'ajax/getProfessionnalAppointements.php',
+        events: 'ajax/getProfessionnalAppointments.php',
         eventClick: function (event) {
             console.log(event);
             $("#appointmentPanel").show();

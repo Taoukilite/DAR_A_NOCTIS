@@ -62,13 +62,7 @@ include("includes/menubar_new.php");
                    <circle cx="10" cy="10" r="10" fill="purple" />
                 </svg> Intervention prête à être réalisée.
                 <div id="calendar"></div>
-            </div>
-
-            
-                
-
-                </p>
-
+                <br>
             </div>
             
         </div> 
