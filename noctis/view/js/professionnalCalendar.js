@@ -37,12 +37,7 @@ $(document).ready(function(){
             }
 
         },
-        drop: function(date) {
-            alert("Dropped on " + date.toLocaleString());
-        },
-
-        droppable: true,
-        editable: true
+       
 
     })
 
