@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 05 Décembre 2016 à 00:34
+-- Généré le :  Lun 05 Décembre 2016 à 10:14
 -- Version du serveur :  5.7.9
 -- Version de PHP :  7.0.0
 
@@ -23,11 +23,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `appointement`
+-- Structure de la table `appointment`
 --
 
-DROP TABLE IF EXISTS `appointement`;
-CREATE TABLE IF NOT EXISTS `appointement` (
+DROP TABLE IF EXISTS `appointment`;
+CREATE TABLE IF NOT EXISTS `appointment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceId` int(11) NOT NULL,
   `clientId` int(11) NOT NULL,
@@ -40,11 +40,11 @@ CREATE TABLE IF NOT EXISTS `appointement` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `appointement`
+-- Contenu de la table `appointment`
 --
 
-INSERT INTO `appointement` (`id`, `serviceId`, `clientId`, `professionnalId`, `start`, `end`, `price`, `state`) VALUES
-(1, 1, 5, 2, '2016-12-07 10:00:00', '2016-12-07 12:00:00', 0, 0),
+INSERT INTO `appointment` (`id`, `serviceId`, `clientId`, `professionnalId`, `start`, `end`, `price`, `state`) VALUES
+(1, 1, 5, 2, '2016-12-07 10:00:00', '2016-12-07 10:50:00', 30, 1),
 (2, 2, 5, 2, '2016-12-09 15:00:00', '2016-12-09 19:00:00', 0, 0);
 
 -- --------------------------------------------------------
