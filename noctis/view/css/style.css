@@ -25,7 +25,9 @@ html {
 
   
 }
-
+/* Demo Sections - You can use these as guides or delete them - the scroller will work with any sort of height, fixed, undefined, or percentage based.
+The padding is very important to make sure the scrollspy picks up the right area when scrolled to. Adjust the margin and padding of sections and children
+of those sections to manage the look and feel of the site. */
 .page-scroll {
     color: black !important; 
 }
@@ -56,60 +58,6 @@ html {
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover;
-<<<<<<< HEAD
-=======
-    text-align: center;
-    margin-top: -20px;
-}
-
-.overlay-color {
-    background-color: rgba(78, 168, 194, 0.7);
-    height: 100%;
-}
-
-.ui-autocomplete {
-    background: #4a4a4a;
-    border-radius:10px;
-}
-
-#form-address {
-    visibility: hidden;
-}
-
-.home-input-service, .home-input-address {
-    min-width: 600px;
-    color: #1b6d85;
-}
-
-.home-input-submit {
-    min-width: 250px;
-    background-color: #1b6d85;
-    color: white;
-    font-size: 120%;
-}
-
-.home-form {
-    margin-top: 20%;
-}
-
-#form-address {
-    display: block;
-}
-
-@media (max-width: 1000px) {
-    .home-input-submit, .home-input-service, .home-input-address  {
-        min-width: 450px;
-    }
-    .home-input-submit, .home-input-service, .home-input-address  {
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 767px) {
-    .home-input-submit, .home-input-service, .home-input-address  {
-        width: 300px;
-    }
->>>>>>> refs/remotes/origin/develop
 }
 
 .about-section {
