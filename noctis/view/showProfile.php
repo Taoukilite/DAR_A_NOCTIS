@@ -19,6 +19,8 @@ require_once '../controller/professionnalController.php';
 require_once '../controller/serviceController.php';
 require_once '../controller/userController.php';
 $user1 = getUserById($_SESSION['UID']);
+
+var_dump($user1);
 if ($_SESSION['type'] == "Professionnal") {
     $user = new Professionnal($user1->id, $user1->name, $user1->firstname, $user1->login, null, $user1->address, $user1->town, $user1->postal, $user1->mail);
     setSuppliedServices($user);

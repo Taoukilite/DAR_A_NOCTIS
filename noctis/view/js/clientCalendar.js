@@ -38,9 +38,13 @@ $(document).ready(function(){
             {
             	$("#inputGroupConfirmation").hide();
                 $("#noConfirmation").show();
-            }else{
+            }else if(event.state == 1){
                 $("#inputGroupConfirmation").show();
                 $("#noConfirmation").hide();
+            }else if(event.state == 2){
+                $("#inputGroupConfirmation").hide();
+                $("#noConfirmation").show();
+                // TODO : afficher le formulaire de paiement
             }
 
         }

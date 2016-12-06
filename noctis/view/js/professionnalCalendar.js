@@ -33,9 +33,12 @@ $(document).ready(function(){
             {
                 $("#inputGroupConfirmation").show();
                 $("#noConfirmation").hide();
+                $("#price").val("");
             }else{
                 $("#inputGroupConfirmation").hide();
                 $("#noConfirmation").show();
+                $("#price").val(event.price);
+
             }
 
         },
