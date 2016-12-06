@@ -88,7 +88,7 @@ SQL;
 
 
         try {
-            $request = $pdo->prepare($sql);
+            /*$request = $pdo->prepare($sql);
             $request->setFetchMode(PDO::FETCH_CLASS, "User");
             $request->execute(array(
                 ':idUser'=> $idUser,
@@ -97,7 +97,27 @@ SQL;
             $data = $request->fetch();
             $request->CloseCursor();
             $request = null;
-            return $data;
+            return $data;*/
+
+            $request = $pdo->prepare($sql);
+	        $request->execute(array(
+	            ':idUser'=> $idUser
+	        ));
+
+	        $result = $request->fetch();
+	        $request->CloseCursor();
+	        $request = null;
+
+	        extract($result);
+            $user = null;
+            if ($type == 1)
+                $user = new Manager($id, $name, $firstname, $login, null, null, null, $mail);
+            elseif ($type == 2) {
+                $user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal, $mail);
+            } elseif ($type == 3) {
+                $user = new Client($id, $name, $firstname, $login, $address, $town, $postal, $mail);
+            }
+            return $user;
         } catch (PDOException $e) {
             $request = null;
             echo 'Erreur getProf : ' . $e->getMessage() . '';

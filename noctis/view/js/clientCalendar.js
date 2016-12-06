@@ -51,9 +51,15 @@ $(document).ready(function(){
 					$("#inputGroupConfirmation").hide();
 					$("#noConfirmation").hide();
 				break;
+
+				case '3' : //client payment done
+					$("#buybutton").hide();
+					$("#inputGroupConfirmation").hide();
+					$("#noConfirmation").show();
+				break;
 				
 				default :
-					alert(event.state);
+					console.log(event.state);
 				break;
 			}
 
@@ -70,6 +76,15 @@ $(document).ready(function(){
 			location.reload();
 		})
 	});
+
+	/*$("#buybutton").click(function(){
+		var resultConfirm = $.post("ajax/clientConfirmAppointment.php", {appointmentId:$("#appointmentId").text(), stateId:$("#stateId").text()}, 'json');
+		resultConfirm.done(function(data){
+			console.log(data);
+			console.log("Requete terminée");
+			location.reload();
+		})
+	});*/
 
 
 
