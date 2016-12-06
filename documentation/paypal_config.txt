@@ -1,0 +1,14 @@
+Nécessaire pour le fonctionnement du paiement : 
+
+1) Changer l'adresse de redirection sur le compte paypal sandbox du vendeur
+(ici : le4x5w7-facilitator-1@hotmail.fr / mdp : kudashita)
+ou tout simplement, lors d'un test local, changer l'adresse IP affiché par celle du localhost
+
+2) S'assurer cURL est autorisé sur le server (également s'assurer qu'il soit à jour)
+
+3) Donner à la propriété php "curl.cainfo" le chemin d'accès du certificat. (Ici dans /certificates/cacert.pem)
+
+4) S'assurer qu'OpenSSL est à jour est forcé l'utilisation de la version 3 (déjà dans le code)
+
+5) Pour le paiment utlisé un compte paypalsandbox avec des fonds disponibles
+(disponible : le4x5w7-buyer@hotmail.fr / mdp : kudashita)
