@@ -63,6 +63,15 @@ of those sections to manage the look and feel of the site. */
     display: none;
 }
 
+.ui-autocomplete {
+    background: #4a4a4a;
+    border-radius:10px;
+}
+
+#form-address, #input-service-alert {
+    display: none;
+}
+
 .home-input-service, .home-input-address {
     min-width: 600px;
     color: #1b6d85;
@@ -92,4 +101,57 @@ of those sections to manage the look and feel of the site. */
     .home-input-submit, .home-input-service, .home-input-address  {
         width: 300px;
     }
+}
+
+.about-section {
+  height: 100%;
+  padding-top: 150px;
+  text-align: center;
+  background: #eee;
+}
+.services-section {
+  height: 100%;
+  padding-top: 30px;
+  text-align: center;
+  background: #fff;
+}
+.contact-section {
+  height: 50%;
+  padding-top: 20px;
+  text-align: center;
+  background: #eee;
+}
+
+#googleMap{
+    width: 500px;
+    height: 380px;
+}
+
+
+.textAreaMsgAccueil{
+  height: 150px;
+  width: 100%;
+}
+
+.frame-menu{
+  height: 80%;
+  width: 80%;
+  border:none 0;
+}
+
+.img_gallery{
+  width: 350px;
+  height: 200px;
+}
+
+.inputMail{
+  width: 200px;
+}
+
+.inputAdresse{
+  width: 250px;
+}
+
+#noMatch{
+  color: red;
 }

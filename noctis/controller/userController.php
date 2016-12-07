@@ -89,6 +89,16 @@ SQL;
 
 
         try {
+            /*$request = $pdo->prepare($sql);
+            $request->setFetchMode(PDO::FETCH_CLASS, "User");
+            $request->execute(array(
+                ':idUser'=> $idUser,
+            ));
+
+            $data = $request->fetch();
+            $request->CloseCursor();
+            $request = null;
+            return $data;*/
 
             $request = $pdo->prepare($sql);
 	        $request->execute(array(

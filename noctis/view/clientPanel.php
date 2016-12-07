@@ -78,10 +78,11 @@ include("includes/menubar_new.php");
 					<br>
 				</div>
 			</div>	
+
+
 		</div>
 
 	</body>
-    
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -110,4 +111,3 @@ include("includes/menubar_new.php");
 			});
 		})(jQuery);
 	</script>
-</html>
