@@ -2,11 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 if(!isset($_SESSION["UID"])){
     header("Location: index.php");
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,14 +63,12 @@ if(!isset($_SESSION["UID"])){
                 <li>
                     <a class ="page-scroll" href="showProfile.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
             </li> 
-
                         <li>
                                 <a class="page-scroll" href="deconnexion.php">Déconnexion</a>
                             </li> 
 HTML;
                 } else {
                     echo <<<HTML
-
                         <li>
                                 <a class="page-scroll" href="login.php">Connexion</a>
                             </li> 

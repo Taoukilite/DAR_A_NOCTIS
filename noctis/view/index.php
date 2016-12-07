@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 require_once "../model/accesBdd.php";
 require_once '../model/_service.php';
 require_once '../model/_professionnal.php';
@@ -9,9 +7,7 @@ require_once '../controller/serviceController.php';
 require_once '../controller/professionnalController.php';
 require_once '../controller/userController.php';
 $services = getServices();
-
 $professionnals = getProfessionnals();
-
 foreach($professionnals as $pro){
     setSuppliedServices($pro);
 }
@@ -56,23 +52,20 @@ foreach($professionnals as $pro){
                         <?php
                             if(isset($_SESSION["type"]) && !is_null($_SESSION["type"])) {
 echo <<<HTML
-                            <li>
-                                <a class ="page-scroll" href="showProfile.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
-                            </li> 
-
-                            <li>
+                <li>
+                    <a class ="page-scroll" href="showProfile.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
+            </li> 
+                        <li>
                                 <a class="page-scroll" href="deconnexion.php">Déconnexion</a>
                             </li> 
 HTML;
                             } else {
                                 echo <<<HTML
-
-                            <li>
+                        <li>
                                 <a class="page-scroll" href="login.php">Connexion</a>
                             </li> 
-                            <li>
-                                <a class="page-scroll" href="inscription.php">S'inscrire</a>
-                            </li>
+<li>
+                                <a class="page-scroll" href="inscription.php">S'inscrire</a></li>
 HTML;
                             }
                         ?>
@@ -161,8 +154,7 @@ HTML;
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src='js/jquery.js'></script>
+        <!-- <script src="js/bootstrap.js"></script> -->
         <script src="js/fullcalendar/lib/jquery-ui.min.js"></script>
         <script src='js/moment-with-locales.js'></script>
         <script src='js/fullcalendar/fullcalendar.min.js'></script>
