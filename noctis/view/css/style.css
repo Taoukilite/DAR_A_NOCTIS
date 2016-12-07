@@ -8,7 +8,6 @@ html {
 }
 .navbar-transparent {
   background-color: transparent;
-  background: transparent;
   border-color: transparent;
 }
 @media (min-width: 767px) {
@@ -60,55 +59,37 @@ of those sections to manage the look and feel of the site. */
     background-size: cover;
 }
 
-.about-section {
-  height: 100%;
-  padding-top: 150px;
-  text-align: center;
-  background: #eee;
-}
-.services-section {
-  height: 100%;
-  padding-top: 30px;
-  text-align: center;
-  background: #fff;
-}
-.contact-section {
-  height: 50%;
-  padding-top: 20px;
-  text-align: center;
-  background: #eee;
+#form-address, #input-service-alert {
+    display: none;
 }
 
-#googleMap{
-    width: 500px;
-    height: 380px;
+.home-input-service, .home-input-address {
+    min-width: 600px;
+    color: #1b6d85;
 }
 
-
-.textAreaMsgAccueil{
-  height: 150px;
-  width: 100%;
+.home-input-submit {
+    min-width: 250px;
+    background-color: #1b6d85;
+    color: white;
+    font-size: 120%;
 }
 
-.frame-menu{
-  height: 80%;
-  width: 80%;
-  border:none 0;
+.home-form {
+    margin-top: 20%;
 }
 
-.img_gallery{
-  width: 350px;
-  height: 200px;
+@media (max-width: 1000px) {
+    .home-input-submit, .home-input-service, .home-input-address  {
+        min-width: 450px;
+    }
+    .home-input-submit, .home-input-service, .home-input-address  {
+        margin-bottom: 10px;
+    }
 }
 
-.inputMail{
-  width: 200px;
-}
-
-.inputAdresse{
-  width: 250px;
-}
-
-#noMatch{
-  color: red;
+@media (max-width: 767px) {
+    .home-input-submit, .home-input-service, .home-input-address  {
+        width: 300px;
+    }
 }

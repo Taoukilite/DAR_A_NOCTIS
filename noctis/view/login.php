@@ -42,8 +42,10 @@ if(isset($_POST["login"]) && isset($_POST["pwd"])){
                   <div id="wrongPwd"><?php echo $wrongPwd; ?></div>
                   <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Se connecter</button>
                   <div>
-                    <a href="index.php">Retour au site.</a>
+                    <a href="inscription.php">Créez votre compte</a>
                   </div>
+<div>
+                    <a href="index.php">Retour au site</a></div>
                 </form>
               </section>
               </div>

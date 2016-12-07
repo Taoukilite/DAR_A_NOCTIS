@@ -1,26 +1,44 @@
 <?php
 
-require_once "../model/accesBdd.php";
+session_start();
 
+require_once "../model/accesBdd.php";
+require_once '../model/_service.php';
+require_once '../model/_professionnal.php';
+require_once '../controller/serviceController.php';
+require_once '../controller/professionnalController.php';
+require_once '../controller/userController.php';
+$services = getServices();
+
+$professionnals = getProfessionnals();
+
+foreach($professionnals as $pro){
+    setSuppliedServices($pro);
+}
 ?>
 
 
 
 <!doctype html>
 <html class="no-js" lang="fr" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Tyrell</title>
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/style.css">
-	</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tyrell</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css' />
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="js/timepicker/lib/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="js/timepicker/jquery.timepicker.css">
 
-    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    </head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -35,122 +53,122 @@ require_once "../model/accesBdd.php";
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                        <li class="hidden">
-                            <a class="page-scroll" href="#page-top"></a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#about">Bienvenue</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#services">Services</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#contact">Contact</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="login.php">Connexion</a>
-                        </li>
+                        <?php
+                            if(isset($_SESSION["type"]) && !is_null($_SESSION["type"])) {
+echo <<<HTML
+                            <li>
+                                <a class ="page-scroll" href="showProfile.php">Bonjour {$_SESSION['firstname']} {$_SESSION['name']}</a>
+                            </li> 
+
+                            <li>
+                                <a class="page-scroll" href="deconnexion.php">Déconnexion</a>
+                            </li> 
+HTML;
+                            } else {
+                                echo <<<HTML
+
+                            <li>
+                                <a class="page-scroll" href="login.php">Connexion</a>
+                            </li> 
+                            <li>
+                                <a class="page-scroll" href="inscription.php">S'inscrire</a>
+                            </li>
+HTML;
+                            }
+                        ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
         </nav>
-
         <!-- Intro Section -->
+
         <section id="intro" class="intro-section">
-            <div class="container">
+            <div class="overlay-color">
+                <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Tyrell - Services</h1>
+                    <div class="col-sm-12">
+
+                        <div class="row alert alert-warning" role="alert" id="input-service-alert"></div>
+                        <form class="form-inline home-form" method="post">
+                            <div class="form-group">
+                                <input class="form-control input-lg home-input-service" name="input-search"
+                                       id="input-service" type="text" placeholder="Service recherché" />
+                            </div>
+                            <button type="button" class="input-lg home-input-submit btn btn-default controls" id="service-search">Trouver votre service</button>
+
+                        </form>
+                    </div>
+
+                    <div class="col-sm-12" id="form-address">
+                        <form class="form-inline home-form" method="post">
+                            <div class="form-group">
+                                <input class="form-control input-lg home-input-address" name="input-address"
+                                       id="input-address" type="text" placeholder="Entrez votre adresse" />
+                            </div>
+                            <button type="button" class="input-lg home-input-submit btn btn-default" id="valid-address">Valider votre adresse</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Bienvenue !</h1>
-
-                        <br>
-                        <p class="content-text">
-                            
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
                 </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery1.jpg">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery2.jpg">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="img_gallery" src="img/gallery3.jpg">
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Services Section -->
         <section id="services" class="services-section">
-            <div class="container">
+            <div class="container" style="height:100%;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Services</h1>
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- <iframe src="#" class="frame-services"></iframe> -->
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Contact</h1>
-
-                        <div class="col-lg-6">
-                            <br>
-                            <h3>Contact :</h3>
-                            <strong>Télephone : </strong>01 02 03 04 05
-                            <br>
-                            <strong>E-mail : </strong>sample@dummy.com
-
+                        <h1>Disponibilité Services</h1>
+                        <h2>Indisponibilité affichées</h2>
+                        <div class="alert alert-warning" role="alert" id="calendar-alert"></div>
+                        <div class="row alert alert-info" role="alert" id="form-calendar">
+                        <form class="form-inline" >
+                            <h2 id="dateClick"></h2>
+                            <div class="form-group">
+                                <label for="startHourCalendar">Heure de début</label>
+                                <input type="date" class="form-control" id="startHourCalendar" placeholder="15:00">
+                            </div>
+                            <div class="form-group">
+                                <label for="endHourCalendar">Heure de fin</label>
+                                <input type="date" class="form-control" id="endHourCalendar" placeholder="17:00">
+                            </div>
+                            <button type="button" class="btn btn-info" id="validateDateCalendar">Valider l'intervention</button>
+                        </form>
                         </div>
-                        <div class="col-lg-6">
-                            <br>
-                            <h3>Adresse :</h3>
-                            <p> 10 downing Street </p>
-                            <!-- <div id="googleMap"></div>
- -->
-
-                        </div>
+                        <div id='calendar' ></div>
                     </div>
                 </div>
             </div>
         </section>
+
+
+        <script type="text/javascript">
+        var autocomplete;
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('input-address')),
+                {types: ['geocode']});
+        }   
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        
+
 
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src='js/jquery.js'></script>
+        <script src="js/fullcalendar/lib/jquery-ui.min.js"></script>
+        <script src='js/moment-with-locales.js'></script>
+        <script src='js/fullcalendar/fullcalendar.min.js'></script>
+        <script src="js/indexCalendar.js"></script>
+        <script src="js/timepicker/lib/bootstrap-datepicker.js"></script>
+        <script src="js/timepicker/jquery.timepicker.min.js"></script>
 
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8"></script>
     </body>
 </html>

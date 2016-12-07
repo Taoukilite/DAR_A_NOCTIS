@@ -37,41 +37,85 @@
 	    FROM users
 	    WHERE login = :login 
 	    AND password = :pwd";
-	    
-	    try{
-	        
-	        $request = $pdo->prepare($sql);
+
+        try {
+
+            $request = $pdo->prepare($sql);
+            $request->execute(array(
+                ':login' => $login,
+                ':pwd' => $pwd,
+            ));
+
+            $result = $request->fetch();
+            $request->CloseCursor();
+            $request = null;
+
+        } catch (PDOException $e) {
+            $request = null;
+            echo 'Erreur getProf : ' . $e->getMessage() . '';
+            die();
+        }
+        if ($result) {
+            extract($result);
+            $user = null;
+            if ($type == 1)
+                $user = new Manager($id, $name, $firstname, $login, null, null, null, $mail);
+            elseif ($type == 2) {
+                $user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal, $mail);
+            } elseif ($type == 3) {
+                $user = new Client($id, $name, $firstname, $login, $address, $town, $postal, $mail);
+            }
+            return $user;
+        } else {
+            return NULL;
+        }
+    }
+
+    /**
+     * Retourne objet user (idUser)
+     *
+     * @param $idUser
+     * @return mixed
+     * @throws Exception
+     */
+    function getUserById($idUser)
+    {
+        $pdo = connexionBdd();
+        $sql = <<<SQL
+            SELECT *
+            FROM users
+            WHERE id=:idUser
+SQL;
+
+
+        try {
+
+            $request = $pdo->prepare($sql);
 	        $request->execute(array(
-	            ':login'=> $login,
-	            ':pwd'=> $pwd,
+	            ':idUser'=> $idUser
 	        ));
-	        
+
 	        $result = $request->fetch();
 	        $request->CloseCursor();
 	        $request = null;
-	        
-	    }catch(PDOException $e){
-	        $request = null;
-	        echo 'Erreur getProf : ' . $e->getMessage() . '';
-	        die();
-	    }
-	    if($result){
-	    	extract($result);
-	    	$user = null;
 
-	    	if($type == 1)
-	    		$user = new Manager($id, $name, $firstname, $login, null, null, null);
-	    	elseif ($type == 2) {
-	    		$user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal);
-	    	}
-	    	elseif ($type == 3) {
-	    		$user = new Client($id, $name, $firstname, $login, $address, $town, $postal);
-	    	}
-	    	return $user;
-	    }else{
-	    	return NULL;
-	    }
-	}
+	        extract($result);
+            $user = null;
+            if ($type == 1)
+                $user = new Manager($id, $name, $firstname, $login, null, null, null, $mail);
+            elseif ($type == 2) {
+                $user = new Professionnal($id, $name, $firstname, $login, null, $address, $town, $postal, $mail);
+            } elseif ($type == 3) {
+                $user = new Client($id, $name, $firstname, $login, $address, $town, $postal, $mail);
+            }
+            return $user;
+        } catch (PDOException $e) {
+            $request = null;
+            echo 'Erreur getProf : ' . $e->getMessage() . '';
+            die();
+        }
+        return null;
+    }
 
 	function createUser($name, $firstname, $login, $pwd, $town, $postal, $address, $mail, $type){
 
