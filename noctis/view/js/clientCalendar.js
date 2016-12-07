@@ -1,7 +1,13 @@
 $(document).ready(function(){
 	$("#appointmentPanel").hide();
 	$('#calendar').fullCalendar({
+        firstDay: new Date().getDay(),
+        locale: 'fr',
 		defaultView: 'agendaWeek',
+        timeFormat: 'HH:mm',
+        eventOverlap: false,
+        slotEventOverlap: false,
+        slotLabelFormat:"HH:mm",
 		height: 800,
 		header: { left: 'prev,next today month,agendaWeek', right: '' },
 		events: 'ajax/getClientAppointments.php',

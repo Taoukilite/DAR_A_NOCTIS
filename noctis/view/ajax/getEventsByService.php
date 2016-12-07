@@ -57,8 +57,8 @@ while (($diff->d) > 0) {
         $event['end'] = $dateEndTemp->format('Y-m-d H:i:s');
         // Pour convertir en ISO - Fullcalendar
         $end =$event['end'];
-        $start_obj = new DateTime($start);
-        $event['start'] = $start_obj->format(DateTime::ISO8601);
+        $end_obj = new DateTime($end);
+        $event['end'] = $end_obj->format(DateTime::ISO8601);
         $event['backgroundColor'] = "#f00";
         array_push($unusableEvents, $event);
     } else {
@@ -72,8 +72,9 @@ while (($diff->d) > 0) {
         $event['end'] = $dateEndTemp->format('Y-m-d H:i:s');
         // Pour convertir en ISO - Fullcalendar
         $end =$event['end'];
-        $start_obj = new DateTime($start);
-        $event['start'] = $start_obj->format(DateTime::ISO8601);
+        $end_obj = new DateTime($end);
+        $event['end'] = $end_obj->format(DateTime::ISO8601);
+        $end =$event['end'];
 
         $event['professionnalId'] = $idPro;
         $event['backgroundColor'] = "#0f0";

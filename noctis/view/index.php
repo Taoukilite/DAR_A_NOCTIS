@@ -15,19 +15,6 @@ $professionnals = getProfessionnals();
 foreach($professionnals as $pro){
     setSuppliedServices($pro);
 }
-//$date1 = new DateTime();
-//$date1->setTime(0, 0);
-//
-//
-//$date2 = new DateTime();
-//$date2->setTime(0, 0);
-//$date2->add(new DateInterval('PT6H'));
-////
-//$diff=$date1->diff($date2);
-//print_r( $diff->d ) ;
-//echo "<br/>";
-//print_r( $diff->h ) ;
-
 ?>
 
 
@@ -43,6 +30,8 @@ foreach($professionnals as $pro){
 		<link rel="stylesheet" href="css/style.css">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css' />
         <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="js/timepicker/lib/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="js/timepicker/jquery.timepicker.css">
 
 	</head>
 
@@ -99,12 +88,15 @@ HTML;
                 <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
+
+                        <div class="row alert alert-warning" role="alert" id="input-service-alert"></div>
                         <form class="form-inline home-form" method="post">
                             <div class="form-group">
                                 <input class="form-control input-lg home-input-service" name="input-search"
                                        id="input-service" type="text" placeholder="Service recherché" />
                             </div>
                             <button type="button" class="input-lg home-input-submit btn btn-default controls" id="service-search">Trouver votre service</button>
+
                         </form>
                     </div>
 
@@ -130,7 +122,21 @@ HTML;
                     <div class="col-lg-12">
                         <h1>Disponibilité Services</h1>
                         <h2>Indisponibilité affichées</h2>
-
+                        <div class="alert alert-warning" role="alert" id="calendar-alert"></div>
+                        <div class="row alert alert-info" role="alert" id="form-calendar">
+                        <form class="form-inline" >
+                            <h2 id="dateClick"></h2>
+                            <div class="form-group">
+                                <label for="startHourCalendar">Heure de début</label>
+                                <input type="date" class="form-control" id="startHourCalendar" placeholder="15:00">
+                            </div>
+                            <div class="form-group">
+                                <label for="endHourCalendar">Heure de fin</label>
+                                <input type="date" class="form-control" id="endHourCalendar" placeholder="17:00">
+                            </div>
+                            <button type="button" class="btn btn-info" id="validateDateCalendar">Valider l'intervention</button>
+                        </form>
+                        </div>
                         <div id='calendar' ></div>
                     </div>
                 </div>
@@ -144,8 +150,6 @@ HTML;
             autocomplete = new google.maps.places.Autocomplete(
                 /** @type {!HTMLInputElement} */(document.getElementById('input-address')),
                 {types: ['geocode']});
-
-
         }   
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8&signed_in=true&libraries=places&callback=initAutocomplete"
@@ -162,6 +166,8 @@ HTML;
         <script src='js/moment-with-locales.js'></script>
         <script src='js/fullcalendar/fullcalendar.min.js'></script>
         <script src="js/indexCalendar.js"></script>
-        
+        <script src="js/timepicker/lib/bootstrap-datepicker.js"></script>
+        <script src="js/timepicker/jquery.timepicker.min.js"></script>
+
     </body>
 </html>
