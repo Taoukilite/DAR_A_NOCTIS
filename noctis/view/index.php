@@ -104,7 +104,7 @@ HTML;
                                 <input class="form-control input-lg home-input-service" name="input-search"
                                        id="input-service" type="text" placeholder="Service recherché" />
                             </div>
-                            <button type="button" class="input-lg home-input-submit btn btn-default" id="service-search">Trouver votre service</button>
+                            <button type="button" class="input-lg home-input-submit btn btn-default controls" id="service-search">Trouver votre service</button>
                         </form>
                     </div>
 
@@ -112,7 +112,7 @@ HTML;
                         <form class="form-inline home-form" method="post">
                             <div class="form-group">
                                 <input class="form-control input-lg home-input-address" name="input-address"
-                                       id="input-address" type="text" placeholder="Entrez votre adresse" value="5 test" />
+                                       id="input-address" type="text" placeholder="Entrez votre adresse" />
                             </div>
                             <button type="button" class="input-lg home-input-submit btn btn-default" id="valid-address">Valider votre adresse</button>
                         </form>
@@ -137,6 +137,22 @@ HTML;
             </div>
         </section>
 
+
+        <script type="text/javascript">
+        var autocomplete;
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('input-address')),
+                {types: ['geocode']});
+
+
+        }   
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3xnAzto0zBmLwke0_3cBtlnMsTYK5yD8&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        
+
+
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
         <script src="js/jquery.easing.min.js"></script>
@@ -146,5 +162,6 @@ HTML;
         <script src='js/moment-with-locales.js'></script>
         <script src='js/fullcalendar/fullcalendar.min.js'></script>
         <script src="js/indexCalendar.js"></script>
+        
     </body>
 </html>

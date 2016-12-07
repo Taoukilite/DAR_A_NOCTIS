@@ -50,7 +50,7 @@ function getAppointments($professionnalId)
 {
     $pdo = connexionBdd();
 
-    $sql = "SELECT U.id AS UserId, U.name, U.firstname, U.address, U.town, U.postal, S.name, A.start, A.end, A.state, A.id AS appointmentId
+    $sql = "SELECT U.id AS UserId, U.name, U.firstname, U.address, U.town, U.postal, S.name, A.start, A.end, A.state, A.price, A.id AS appointmentId
             FROM appointment AS A
             JOIN services AS S ON S.id = A.serviceId
             JOIN users AS U ON U.id = A.clientId

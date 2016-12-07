@@ -18,15 +18,11 @@ require_once '../model/_professionnal.php';
 require_once '../controller/professionnalController.php';
 require_once '../controller/serviceController.php';
 require_once '../controller/userController.php';
-$user1 = getUserById($_SESSION['UID']);
-if ($_SESSION['type'] == "Professionnal") {
-    $user = new Professionnal($user1->id, $user1->name, $user1->firstname, $user1->login, null, $user1->address, $user1->town, $user1->postal, $user1->mail);
+$user = getUserById($_SESSION['UID']);
+
+if(get_class($user) == "Professionnal"){
     setSuppliedServices($user);
-} else {
-    $user = new User($user1->id, $user1->name, $user1->firstname, $user1->login, $user1->address, $user1->town, $user1->postal, $user1->mail);
 }
-
-
 include("includes/menubar_new.php");
 ?>
 
