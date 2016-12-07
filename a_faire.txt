@@ -1,0 +1,23 @@
+Select COUNT(u.id) 
+FROM users u
+LEFT JOIN appointment a ON u.id = a.professionnalId
+WHERE a.professionnalId IS NULL
+AND a.serviceId = 2
+AND (a.start <= "2016-11-08 06:00:00" AND a.end > "2016-11-08 06:00:00"
+    OR  a.start >= "2016-11-08 06:00:00" AND a.start <= "2016-12-08 08:00:00" )
+
+
+// v2 me
+SELECT DISTINCT *
+FROM users u
+LEFT JOIN appointment a ON u.id = a.professionnalId
+JOIN service_supplier ss ON ss.professionnalId = u.id 
+WHERE u.type = 2
+AND ss.serviceId = 2 
+AND u.id NOT IN (SELECT DISTINCT professionnalId
+    FROM appointment a
+    WHERE a.start >= "2016-12-08 14:00:00" OR a.end < "2016-12-08 12:00:00"
+    AND serviceId = 2 )
+OR (a.professionnalId IS NULL
+AND ss.serviceId = 2
+AND u.type = 2)

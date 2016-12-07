@@ -2,7 +2,10 @@
  * Created by stephane on 05/12/16.
  */
 $(document).ready(function() {
-    serviceId = null;
+    var serviceId = null;
+    var serviceName = null;
+    var address = null;
+    var eventsUsable = null;
     $('#calendar').css("visibility", "hidden");
     $( "#input-service" ).autocomplete({
         source: '../controller/ajax_get_services.php',
@@ -18,23 +21,37 @@ $(document).ready(function() {
 
     $('#valid-address').click(function () {
         $('#calendar').css("visibility", "visible");
-        service = $("#input-service").val();
+        serviceName = $("#input-service").val();
         address = $("#input-address").val();
 
-        // Ajax get events by service
-        $('#calendar').fullCalendar( 'removeEvents' );
-        $.post( "ajax/getEventsByService.php", { service: service }, function( data ) {
-            data.forEach(function(element) {
-                element.title = service;
-                serviceId = element.serviceId;
-                $('#calendar').fullCalendar( 'renderEvent', element, true);
-            });
+        $.post("ajax/serviceExist.php", {serviceName: serviceName}, function( data ) {
+            serviceId = data;
+            if (serviceId == false || serviceId == null) {
+                alert("service inexistant");
+            } else {
+                // Ajax get events by service
+                $('#calendar').fullCalendar('removeEvents');
+                $.post("ajax/getEventsByService.php", {serviceId: serviceId, serviceName: serviceName}, function (data) {
+                    data[0].forEach(function (element) {
+                        $('#calendar').fullCalendar('renderEvent', element, true);
+                    });
+                    eventsUsable = data[1];
+
+                    // event dispo
+                    // data[1].forEach(function (element) {
+                    //     $('#calendar').fullCalendar('renderEvent', element, true);
+                    // });
+
+                }, "json");
+            }
         }, "json");
+
+
     });
 
     // FULL CALENDAR
     $('#calendar').fullCalendar({
-        eventColor: "#d9534f",
+        firstDay: new Date().getDay(),
         locale: 'fr',
         timeFormat: 'HH:mm', // with no am / pm in event date
         eventOverlap: false,
@@ -47,44 +64,72 @@ $(document).ready(function() {
 
 
 
-    select: function(start, end) {
+        select: function(start, end) {
             if (moment() > start) {
                 alert("La doloréane n'existe pas encore. \nUn intervention ne peut pas se faire dans le passer")
             } else {
                 end.add(1, 'hours').add(30, "m");
 
                 // Test event existent déja ?
+                // front-end
                 var timeEvents = $('#calendar').fullCalendar('clientEvents', function (event) {
                     return (event.start <= start && event.end > start) ||
-                        (event.start >= start && event.start <= end );
+                        (event.start >= start && event.start < end );
                 });
 
-
+                var cpt = 0;
                 if (timeEvents.length <= 0) {
 
-                    // Si connecté dans script php
-                    $.post("ajax/addEvent.php", {
-                        serviceId: serviceId,
-                        serviceName: service, // Utile si serviceId null
-                        start: moment(start.format()).format('YYYY-MM-DD H:m:s'),
-                        end: moment(end.format()).format('YYYY-MM-DD H:m:s')
-                    }, function (data) {
-                        if (data == false)
-                            $(location).attr('href', "login.php");
-                        else {
-                            alert("demande d'intervention envoyé");
-                            var title = service;
-                            var eventData;
-                            if (title) {
-                                eventData = {
-                                    title: title,
-                                    start: start,
-                                    end: end
-                                };
-                                $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+
+                    //back-end
+                    eventsUsable.forEach(function (element) {
+
+                        if (cpt == 0) {
+                            if (moment(element['start']) <= start && moment(element['end']) >= end) {
+
+                                $.post("ajax/addEvent.php", {
+                                    professionnalId: element['professionnalId'],
+                                    serviceId: serviceId,
+                                    serviceName: serviceName, // Utile si serviceId null
+                                    start: moment(start.format()).format('YYYY-MM-DD H:m:s'),
+                                    end: moment(end.format()).format('YYYY-MM-DD H:m:s')
+                                }, function (data) {
+                                    if (data == false)
+                                        $(location).attr('href', "login.php");
+                                    else {
+                                        alert("demande d'intervention envoyé");
+                                        // mettre form
+                                        var title = serviceName;
+
+                                        var eventData;
+                                        if (title) {
+                                            eventData = {
+                                                title: title,
+                                                start: start,
+                                                end: end
+                                            };
+                                            $('#calendar').fullCalendar('removeEvents');
+                                            $.post("ajax/getEventsByService.php", {
+                                                serviceId: serviceId,
+                                                serviceName: serviceName
+                                            }, function (data) {
+
+                                                data[0].forEach(function (element) {
+                                                    $('#calendar').fullCalendar('renderEvent', element, true);
+                                                });
+                                                eventsUsable = data[1];
+
+                                            }, "json");
+                                            // return false;
+                                        }
+                                    }
+                                }, "json");
                             }
                         }
-                    }, "json");
+                    });
+
+                    // Si connecté dans script php
+
                 } else {
                     alert("Plage horaire chevauchant une indisponibilité");
                 }

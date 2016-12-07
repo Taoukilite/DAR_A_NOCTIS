@@ -15,6 +15,18 @@ $professionnals = getProfessionnals();
 foreach($professionnals as $pro){
     setSuppliedServices($pro);
 }
+//$date1 = new DateTime();
+//$date1->setTime(0, 0);
+//
+//
+//$date2 = new DateTime();
+//$date2->setTime(0, 0);
+//$date2->add(new DateInterval('PT6H'));
+////
+//$diff=$date1->diff($date2);
+//print_r( $diff->d ) ;
+//echo "<br/>";
+//print_r( $diff->h ) ;
 
 ?>
 
@@ -118,6 +130,7 @@ HTML;
                     <div class="col-lg-12">
                         <h1>Disponibilité Services</h1>
                         <h2>Indisponibilité affichées</h2>
+
                         <div id='calendar' ></div>
                     </div>
                 </div>

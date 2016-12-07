@@ -71,7 +71,7 @@ function getAppointments($professionnalId)
         return $result;
     }catch(PDOException $e){
         $requete = null;
-        echo 'Erreur getAppointements : ' . $e->getMessage() . '';
+        echo 'Erreur getAppointments : ' . $e->getMessage() . '';
         die();
     }
 }
